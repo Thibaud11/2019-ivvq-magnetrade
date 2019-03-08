@@ -1,4 +1,7 @@
+dist: trusty
 language: java
 jdk: oraclejdk8
+install: mvn dependency:go-offline
 script:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn test
+  - mvn clean verify
