@@ -92,6 +92,7 @@
                 <!-- Same bugfix as above -->
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
+                    <skipITs>true</skipITs>
                 </configuration>
             </plugin>
 
