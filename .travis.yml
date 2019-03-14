@@ -2,8 +2,14 @@ dist: trusty
 language: java
 jdk: oraclejdk8
 install: mvn dependency:go-offline
+addons:
+  sonarcloud:
+    organization: "M2DL_2019-ivvq-magnetrade"
+    token:
+      secure: 0870cf507e017e0747f27c705325686a241c54aa
 script:
   - mvn test -B -V
   - bash <(curl -s https://codecov.io/bash) -c -F unit
   - mvn clean verify -Dskip.surefire.tests=true -B -V
   - bash <(curl -s https://codecov.io/bash) -c -F integration
+  - sonar-scanner
