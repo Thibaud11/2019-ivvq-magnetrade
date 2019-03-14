@@ -1,0 +1,32 @@
+@startuml "magnetrade_packages"
+    package magnet {
+
+    }
+    package user {
+
+    }
+    package abstractpost {
+
+    }
+    package proposal {
+
+    }
+    package request {
+
+    }
+    package transaction {
+
+    }
+    package comment {
+        
+    }
+
+    abstractpost <.> user : <<<use>>
+    comment <...> user : <<use>>
+    abstractpost ..> comment : <<use>>
+    transaction <..> user : <<use>>
+    transaction ..> magnet : <<use>>
+    abstractpost ..> magnet : <<use>>
+    proposal ..> abstractpost : <<use>>
+    request ..> abstractpost : <<use>>
+@enduml
