@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class TestIT {
+public class FooBarIT {
 
     @Test
     public void inteTest() {
