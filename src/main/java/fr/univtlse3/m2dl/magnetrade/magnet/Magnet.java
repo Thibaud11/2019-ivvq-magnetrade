@@ -35,9 +35,7 @@ public class Magnet {
      */
     private String description;
 
-    public Magnet(){
-        super();
-    }
+    public Magnet(){ }
 
     public Magnet(String name, String pictureURL, String description) {
         this.name = name;
