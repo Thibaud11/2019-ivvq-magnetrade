@@ -272,22 +272,17 @@ public abstract class AbstractPost {
         AbstractPost that = (AbstractPost) o;
 
         if (!isActive.equals(that.isActive)) return false;
-        if (!getPicture().equals(that.getPicture())) return false;
-        if (!getText().equals(that.getText())) return false;
-        if (!getCreationDate().equals(that.getCreationDate())) return false;
-        if (getMagnets() != null ? !getMagnets().equals(that.getMagnets()) : that.getMagnets() != null) return false;
-        return getComments() != null ? getComments().equals(that.getComments()) : that.getComments() == null;
+        if (getPicture() != null ? !getPicture().equals(that.getPicture()) : that.getPicture() != null) return false;
+        if (getText() != null ? !getText().equals(that.getText()) : that.getText() != null) return false;
+        return getCreationDate().equals(that.getCreationDate());
     }
 
     @Override
     public int hashCode() {
         int result = isActive.hashCode();
-        result = 31 * result + getPicture().hashCode();
-        result = 31 * result + getText().hashCode();
+        result = 31 * result + (getPicture() != null ? getPicture().hashCode() : 0);
+        result = 31 * result + (getText() != null ? getText().hashCode() : 0);
         result = 31 * result + getCreationDate().hashCode();
-        result = 31 * result + (getMagnets() != null ? getMagnets().hashCode() : 0);
-        result = 31 * result + (getComments() != null ? getComments().hashCode() : 0);
         return result;
     }
-
 }

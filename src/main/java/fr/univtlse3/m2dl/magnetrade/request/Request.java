@@ -4,9 +4,11 @@ import fr.univtlse3.m2dl.magnetrade.abstractpost.AbstractPost;
 import fr.univtlse3.m2dl.magnetrade.comment.Comment;
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Request extends AbstractPost {
 
     /**

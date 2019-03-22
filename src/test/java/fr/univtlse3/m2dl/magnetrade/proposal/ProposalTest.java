@@ -51,7 +51,7 @@ public class ProposalTest {
 
     @Test
     public void testSetPicture() throws Exception {
-        proposal.setText("new_pic");
+        proposal.setPicture("new_pic");
         assertThat(proposal.getPicture(), IsEqual.equalTo("new_pic"));
     }
 
@@ -154,8 +154,10 @@ public class ProposalTest {
 
     @Test
     public void testEquals() throws Exception {
+        Date date = new Date(155409322);
+
         Proposal prop = new Proposal(2L, true, "pic", "content", nowDate, new ArrayList<>(), new ArrayList<>());
-        Proposal prop2 = new Proposal(3L, true, "pic", "content", new Date(), new ArrayList<>(), new ArrayList<>());
+        Proposal prop2 = new Proposal(3L, true, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
 
         assertTrue(proposal.equals(prop));
         assertFalse(proposal.equals(prop2));

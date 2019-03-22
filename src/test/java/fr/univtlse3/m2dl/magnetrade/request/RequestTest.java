@@ -51,7 +51,7 @@ public class RequestTest {
 
     @Test
     public void testSetPicture() throws Exception {
-        request.setText("new_pic");
+        request.setPicture("new_pic");
         assertThat(request.getPicture(), IsEqual.equalTo("new_pic"));
     }
 
@@ -154,8 +154,10 @@ public class RequestTest {
 
     @Test
     public void testEquals() throws Exception {
+        Date date = new Date(155409322);
+
         Request req = new Request(2L, true, "pic", "content", nowDate, new ArrayList<>(), new ArrayList<>());
-        Request req2 = new Request(3L, true, "pic", "content", new Date(), new ArrayList<>(), new ArrayList<>());
+        Request req2 = new Request(3L, true, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
 
         assertTrue(request.equals(req));
         assertFalse(request.equals(req2));

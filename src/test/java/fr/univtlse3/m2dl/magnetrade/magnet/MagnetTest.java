@@ -38,60 +38,60 @@ public class MagnetTest {
     }
 
     @Test
-    public void getNameTest() {
+    public void testGetName() {
         String actual = magnet.getName();
         assertThat(actual, is(MAGNET_NAME));
     }
 
     @Test
-    public void setNameTest() {
+    public void testSetName() {
         magnet.setName(NEW_MAGNET_NAME);
         assertThat(NEW_MAGNET_NAME, is(magnet.getName()));
     }
 
     @Test
-    public void getPictureURLTest() {
+    public void testGetPictureURL() {
         String actual = magnet.getPictureURL();
         assertThat(actual, is(MAGNET_PICTURE_URL));
     }
 
     @Test
-    public void setPictureURLTest() {
+    public void testSetPictureURL() {
         magnet.setPictureURL(NEW_MAGNET_PICTURE_URL);
         assertThat(NEW_MAGNET_PICTURE_URL, is(magnet.getPictureURL()));
     }
 
     @Test
-    public void getDescriptionTest() {
+    public void testGetDescription() {
         String actual = magnet.getDescription();
         assertThat(actual, is(MAGNET_DESCRIPTION));
     }
 
     @Test
-    public void setDescriptionTest() {
+    public void testSetDescription() {
         magnet.setDescription(NEW_MAGNET_DESCRIPTION);
         assertThat(NEW_MAGNET_DESCRIPTION, is(magnet.getDescription()));
     }
 
     @Test
-    public void EqualsTest() {
+    public void testEquals() {
         newMagnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION);
         assertThat(magnet, is(newMagnet));
     }
 
     @Test
-    public void MagnetPictureTest() {
+    public void testMagnetPicture() {
         assertThat(validator.validate(magnet).isEmpty(), is(true));
     }
 
     @Test
-    public void MagnetNameNotNullTest() {
+    public void testMagnetNameNotNull() {
         magnet.setName(null);
         assertThat(validator.validate(magnet).isEmpty(), is(false));
     }
 
     @Test
-    public void MagnetPictureURLNotNullTest() {
+    public void testMagnetPictureURLNotNull() {
         magnet.setPictureURL(null);
         assertThat(validator.validate(magnet).isEmpty(), is(false));
     }
