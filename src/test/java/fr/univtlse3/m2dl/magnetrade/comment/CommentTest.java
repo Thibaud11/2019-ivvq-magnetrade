@@ -24,53 +24,53 @@ public class CommentTest {
     }
 
     @Test
-    public void isEditedTest() {
+    public void testIsEdited() {
         Comment c = new Comment(true, this.d, "", this.u);
         Assert.assertTrue(c.isEdited());
     }
 
     @Test
-    public void setEditedTest() {
+    public void testSetEdited() {
         Comment c = new Comment(false, this.d, "", this.u);
         c.setEdited(true);
         Assert.assertTrue(c.isEdited());
     }
 
     @Test
-    public void getDateTest() {
+    public void testGetDate() {
         Comment c = new Comment(true, this.d, "", this.u);
         Assert.assertEquals(this.d, c.getDate());
     }
 
     @Test
-    public void setDateTest() {
+    public void testSetDate() {
         Comment c = new Comment();
         c.setDate(this.d);
         Assert.assertEquals(this.d, c.getDate());
     }
 
     @Test
-    public void getTextTest() {
+    public void testGetText() {
         Comment c = new Comment(true, this.d, "HUGO", this.u);
         Assert.assertEquals("HUGO", c.getText());
     }
 
     @Test
-    public void setTextTest() {
+    public void testSetText() {
         Comment c = new Comment();
         c.setText("HUGO");
         Assert.assertEquals("HUGO", c.getText());
     }
 
     @Test
-    public void getCommenterTest() {
+    public void testGetCommenter() {
         User u1 = new User();
         Comment c = new Comment(true, this.d, "", u1);
         Assert.assertEquals(u1, c.getCommenter());
     }
 
     @Test
-    public void setCommenterTest() {
+    public void testSetCommenter() {
         User u1 = new User();
         Comment c = new Comment();
         c.setCommenter(u1);
@@ -78,7 +78,7 @@ public class CommentTest {
     }
 
     @Test
-    public void equalsTest() {
+    public void testEquals() {
         Comment c1 = new Comment(false, this.d, "COUCOU", null);
         Comment c2 = new Comment(false, this.d, "COUCOU", null);
         Comment c3 = new Comment(true, this.d, "COUCOU", null);
