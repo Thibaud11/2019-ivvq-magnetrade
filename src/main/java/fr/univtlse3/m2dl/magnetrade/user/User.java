@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -14,6 +15,28 @@ public class User {
 
     private String firstName;
     private String lastName;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(emailName, user.emailName) &&
+                Objects.equals(birthDate, user.birthDate) &&
+                Objects.equals(nickName, user.nickName) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(picture, user.picture);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, emailName, birthDate, nickName, password, phoneNumber, picture);
+    }
+
     private String emailName;
     private Date birthDate;
     private String nickName;
