@@ -1,0 +1,59 @@
+@startuml "magnetrade_class"
+allow_mixing
+class User #A5E1A8 {
+    -nom: String
+    -prenom: String
+    -email: String
+    -birthdate: Date
+    -nickname: String
+    -password: String
+    -phone: String
+    -picture: String
+}
+class Request #FFFFC0 {
+
+}
+class Proposal #C0FFFF {
+
+}
+class Transaction #FFC0C0 {
+    -price: Double
+    -date: Date
+}
+abstract class AbstractPost #DEDEDE {
+    -isActive: boolean
+    -picture: String
+    -text: String
+    -date: Date
+}
+class Magnet #FFD9BB {
+    -name: String
+    -picture: String
+    -description: String
+}
+class UserMagnet #FFA9F8 {
+    -number: int
+}
+class Comment #91FFCF {
+    -isEdited: boolean
+    -date: Date
+    -text: String
+}
+class Family #9590FE {
+    -name: String
+
+}
+
+Request -up-|> AbstractPost
+Proposal -up-|> AbstractPost
+AbstractPost "posts [*]" -- "[1] poster" User
+AbstractPost "posts [*]" --> "[1..*] magnets" Magnet
+AbstractPost "posts [1]" --> "[*] comments" Comment
+Comment "comments [*]" --> "[1] commenter" User
+Transaction "sells [*]" -- "[1] seller" User
+Transaction "purchases [*]" -- "[1] buyer" User
+Transaction "transaction [*]" --> "[1..*] magnets" Magnet
+Magnet "magnets [*]" -- "[1] family" Family
+UserMagnet "[*]" --> "[1] magnet" Magnet
+UserMagnet "[*]" -- "[1] user" User
+@enduml
