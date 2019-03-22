@@ -44,7 +44,7 @@ public class User {
     private String phoneNumber;
     private String picture;
 
-    public User(){
+    public User() {
 
     }
 

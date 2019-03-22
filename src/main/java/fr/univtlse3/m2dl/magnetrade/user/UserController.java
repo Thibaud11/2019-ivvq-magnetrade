@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.Date;
-
 @Controller
 public class UserController {
     @Autowired
@@ -16,7 +14,7 @@ public class UserController {
 
     @PostMapping("/api/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user){
+    public User createUser(@RequestBody User user) {
 
         return userService.saveUser(user);
     }

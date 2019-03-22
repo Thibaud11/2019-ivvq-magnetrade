@@ -16,7 +16,7 @@ public class MagnetService {
         this.magnetRepository = magnetRepository;
     }
 
-    public MagnetService(){
+    public MagnetService() {
     }
 
     public void setMagnetRepository(MagnetRepository magnetRepository) {
@@ -25,15 +25,11 @@ public class MagnetService {
 
     public Magnet findMagnetById(long l) {
         Optional<Magnet> a = magnetRepository.findById(l);
-        if(a.isPresent()){
-            return a.get();
-        } else {
-            return null;
-        }
+        return a.orElse(null);
     }
 
-    public void saveMagnet(Magnet magnet) throws IllegalArgumentException{
-        if(magnet == null){
+    public void saveMagnet(Magnet magnet) throws IllegalArgumentException {
+        if (magnet == null) {
             throw new IllegalArgumentException();
         } else {
             magnetRepository.save(magnet);

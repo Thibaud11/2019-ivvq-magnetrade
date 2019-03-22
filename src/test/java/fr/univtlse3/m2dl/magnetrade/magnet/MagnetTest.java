@@ -9,7 +9,7 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class MagnetTest {
 
@@ -20,11 +20,11 @@ public class MagnetTest {
 
     final public static String MAGNET_NAME = "MADAGASCAR";
     final public static String MAGNET_PICTURE_URL = "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwigpcHz55XhAhUEJBoKHbeqAnIQjRx6BAgBEAU&url=https%3A%2F%2Fwww.world-wide-gifts.com%2Fsouvenirs%2F00008084-metal-fridge-magnet-madagascar-map-and-flag-of-madagascar-map-shaped%2F&psig=AOvVaw35ZArOyUpht-Jc41asckXs&ust=1553346261528026";
-    final public static String MAGNET_DESCRIPTION= "Un magnet pour madagscar";
+    final public static String MAGNET_DESCRIPTION = "Un magnet pour madagscar";
 
     final public static String NEW_MAGNET_NAME = "FRANCE";
     final public static String NEW_MAGNET_PICTURE_URL = "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwifq4DA6ZXhAhX2BGMBHceKDhcQjRx6BAgBEAU&url=https%3A%2F%2Fwww.amazon.com%2FFlagline-France-Magnet%2Fdp%2FB000EOFOJO&psig=AOvVaw2wL56VoiooietOzc9kaVga&ust=1553346692268254";
-    final public static String NEW_MAGNET_DESCRIPTION= "Champion du monde";
+    final public static String NEW_MAGNET_DESCRIPTION = "Champion du monde";
 
     @BeforeClass
     public static void setUp() {

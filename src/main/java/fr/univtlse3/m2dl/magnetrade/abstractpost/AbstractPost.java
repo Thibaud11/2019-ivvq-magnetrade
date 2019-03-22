@@ -1,7 +1,7 @@
 package fr.univtlse3.m2dl.magnetrade.abstractpost;
 
-import fr.univtlse3.m2dl.magnetrade.Comment;
-import fr.univtlse3.m2dl.magnetrade.Magnet;
+import fr.univtlse3.m2dl.magnetrade.comment.Comment;
+import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -289,5 +289,5 @@ public abstract class AbstractPost {
         result = 31 * result + (getComments() != null ? getComments().hashCode() : 0);
         return result;
     }
-    
+
 }

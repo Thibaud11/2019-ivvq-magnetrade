@@ -17,11 +17,11 @@ public class UserService {
         return userRepository;
     }
 
-    public User saveUser(User user){
-        if(user == null){
+    public User saveUser(User user) {
+        if (user == null) {
             throw new IllegalArgumentException("Un user à sauver ne peut être null");
 
-        }else{
+        } else {
             return userRepository.save(user);
         }
     }
