@@ -1,6 +1,6 @@
 package fr.univtlse3.m2dl.magnetrade.comment;
 
-import fr.univtlse3.m2dl.magnetrade.User;
+import fr.univtlse3.m2dl.magnetrade.user.User;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

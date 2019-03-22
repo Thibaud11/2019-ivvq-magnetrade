@@ -9,6 +9,7 @@ import java.util.Objects;
 
 /**
  * The Magnet class
+ *
  * @author: Rialy
  */
 @Entity
@@ -35,7 +36,8 @@ public class Magnet {
      */
     private String description;
 
-    public Magnet(){ }
+    public Magnet() {
+    }
 
     public Magnet(String name, String pictureURL, String description) {
         this.name = name;

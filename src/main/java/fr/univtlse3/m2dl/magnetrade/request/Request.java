@@ -1,8 +1,8 @@
 package fr.univtlse3.m2dl.magnetrade.request;
 
-import fr.univtlse3.m2dl.magnetrade.Comment;
-import fr.univtlse3.m2dl.magnetrade.Magnet;
 import fr.univtlse3.m2dl.magnetrade.abstractpost.AbstractPost;
+import fr.univtlse3.m2dl.magnetrade.comment.Comment;
+import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 
 import java.util.Date;
 import java.util.List;
