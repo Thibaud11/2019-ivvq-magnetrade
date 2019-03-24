@@ -10,6 +10,6 @@ install: mvn dependency:go-offline
 script:
   - mvn test -B -V
   - bash <(curl -s https://codecov.io/bash) -c -F unit
+  - sonar-scanner
   - mvn clean verify -Dskip.surefire.tests=true -B -V
   - bash <(curl -s https://codecov.io/bash) -c -F integration
-  - sonar-scanner
