@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,9 +29,9 @@ public class MagnetService {
         return a.orElse(null);
     }
 
-    public void saveMagnet(Magnet magnet) throws IllegalArgumentException {
+    public void saveMagnet(Magnet magnet) {
         if (magnet == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Magnet can not be null");
         } else {
             magnetRepository.save(magnet);
         }
@@ -44,9 +45,9 @@ public class MagnetService {
         return magnetRepository;
     }
 
-    public ArrayList<Magnet> findAllMagnets() {
+    public List<Magnet> findAllMagnets() {
         Iterable<Magnet> temp = this.magnetRepository.findAll();
-        ArrayList<Magnet> res = new ArrayList<>();
+        List<Magnet> res = new ArrayList<>();
         temp.forEach(res::add);
 
         /* Voir si on a besoin de classer les magnet, peut-être par nom */

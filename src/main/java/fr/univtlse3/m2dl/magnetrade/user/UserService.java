@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+
     private UserRepository userRepository;
 
     @Autowired
@@ -19,10 +20,11 @@ public class UserService {
 
     public User saveUser(User user) {
         if (user == null) {
-            throw new IllegalArgumentException("Un user à sauver ne peut être null");
+            throw new IllegalArgumentException("User can not be null");
 
         } else {
             return userRepository.save(user);
         }
     }
+
 }

@@ -13,7 +13,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public void createComment(@RequestBody Comment comment) {
         this.commentService.createComment(comment);
     }
