@@ -6,7 +6,8 @@ import org.junit.Test;
 import java.util.Date;
 
 public class UserTest {
-    public User user;
+
+    private User user;
 
     @Before
     public void setup() {
