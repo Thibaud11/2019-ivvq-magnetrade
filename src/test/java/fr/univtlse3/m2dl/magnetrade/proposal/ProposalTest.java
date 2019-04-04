@@ -23,6 +23,12 @@ public class ProposalTest {
     }
 
     @Test
+    public void testConstructor() throws Exception {
+        Proposal proposal1 = new Proposal("pic", "content", nowDate, new ArrayList<>());
+        assertThat(proposal1, IsEqual.equalTo(proposal));
+    }
+
+    @Test
     public void testGetId() throws Exception {
         assertThat(proposal.getId(), IsEqual.equalTo(1L));
     }
@@ -156,11 +162,22 @@ public class ProposalTest {
     public void testEquals() throws Exception {
         Date date = new Date(155409322);
 
+        // same attributes
         Proposal prop = new Proposal(2L, true, "pic", "content", nowDate, new ArrayList<>(), new ArrayList<>());
+        // different creationDate
         Proposal prop2 = new Proposal(3L, true, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
+        // different text
+        Proposal prop3 = new Proposal(4L, true, "pic", "other", date, new ArrayList<>(), new ArrayList<>());
+        // different picture
+        Proposal prop4 = new Proposal(5L, true, "other", "content", date, new ArrayList<>(), new ArrayList<>());
+        // different isActive
+        Proposal prop5 = new Proposal(6L, false, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
 
         assertTrue(proposal.equals(prop));
         assertFalse(proposal.equals(prop2));
+        assertFalse(proposal.equals(prop3));
+        assertFalse(proposal.equals(prop4));
+        assertFalse(proposal.equals(prop5));
     }
 
     @Test
@@ -173,6 +190,13 @@ public class ProposalTest {
                 ", magnets=" + new ArrayList<>() +
                 ", comments=" + new ArrayList<>() +
                 '}'));
+    }
+
+    @Test
+    public void testHashCode() throws Exception {
+        Proposal req = new Proposal(2L, true, "pic", "content", nowDate, new ArrayList<>(), new ArrayList<>());
+
+        assertThat(proposal.hashCode(), IsEqual.equalTo(req.hashCode()));
     }
 
 }
