@@ -17,4 +17,10 @@ public class UserController {
         return userService.saveUser(user);
     }
 
+    @PostMapping("/edit")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User editUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
+
 }
