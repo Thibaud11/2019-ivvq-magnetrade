@@ -11,15 +11,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/create")
+    @PostMapping({"/create", "/edit"})
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
-    }
-
-    @PostMapping("/edit")
-    @ResponseStatus(HttpStatus.CREATED)
-    public User editUser(@RequestBody User user) {
         return userService.saveUser(user);
     }
 

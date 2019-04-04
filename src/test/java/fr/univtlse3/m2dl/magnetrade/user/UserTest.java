@@ -10,6 +10,7 @@ public class UserTest {
     private User user;
     private User user2;
     private User user3;
+    private User user4;
 
 
     @Before
@@ -17,6 +18,7 @@ public class UserTest {
         user = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
         user2 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
         user3 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/s.jpg");
+        user4 = new User("a", "a", "la@a.a", new Date(2, 2, 2), "dank 2 veineux", "2", "+2", "/2/s.jpg");
 
     }
 
@@ -115,6 +117,7 @@ public class UserTest {
     @Test
     public void testNotEquals() {
         assert(!user.equals(user3));
+        assert(!user.equals(user4));
     }
     @Test
     public void testHashCode() {
