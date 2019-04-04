@@ -14,7 +14,7 @@ public class RequestService {
      *
      * @param request the request to create
      */
-    public Request createRequest(Request request) {
+    public Request createOrUpdateRequest(Request request) {
         return repository.save(request);
     }
 

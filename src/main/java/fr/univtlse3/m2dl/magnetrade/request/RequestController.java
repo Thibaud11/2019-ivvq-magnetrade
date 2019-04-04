@@ -20,7 +20,17 @@ public class RequestController {
      */
     @PostMapping("/create")
     public Request createRequest(@RequestBody Request request) {
-        return service.createRequest(request);
+        return service.createOrUpdateRequest(request);
+    }
+
+    /**
+     * Method to update a request in the back-end
+     *
+     * @param request the request to update
+     */
+    @PostMapping("/edit")
+    public Request editRequest(@RequestBody Request request) {
+        return service.createOrUpdateRequest(request);
     }
 
 }

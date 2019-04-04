@@ -20,7 +20,17 @@ public class ProposalController {
      */
     @PostMapping("/create")
     public Proposal createProposal(@RequestBody Proposal proposal) {
-        return service.createProposal(proposal);
+        return service.createOrUpdateProposal(proposal);
+    }
+
+    /**
+     * Method to update a proposal in the back-end
+     *
+     * @param proposal the proposal to update
+     */
+    @PostMapping("/edit")
+    public Proposal editProposal(@RequestBody Proposal proposal) {
+        return service.createOrUpdateProposal(proposal);
     }
 
 }

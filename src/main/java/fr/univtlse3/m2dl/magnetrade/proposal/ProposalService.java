@@ -10,11 +10,11 @@ public class ProposalService {
     private ProposalRepository repository;
 
     /**
-     * Method to create a proposal in the back-end
+     * Method to create or update a proposal in the back-end
      *
-     * @param proposal the proposal to create
+     * @param proposal the proposal to create or update
      */
-    public Proposal createProposal(Proposal proposal) {
+    public Proposal createOrUpdateProposal(Proposal proposal) {
         return repository.save(proposal);
     }
 
