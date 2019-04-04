@@ -1,0 +1,13 @@
+.idea
+.mvn
+documentation/
+target/
+.git
+.gitignore
+.travis.yml
+HELP.md
+magnetrade.iml
+codecov.yml
+mvnw
+mvnw.cmd
+README.md
