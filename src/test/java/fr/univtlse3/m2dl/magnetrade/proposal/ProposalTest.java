@@ -168,16 +168,25 @@ public class ProposalTest {
         Proposal prop2 = new Proposal(3L, true, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
         // different text
         Proposal prop3 = new Proposal(4L, true, "pic", "other", date, new ArrayList<>(), new ArrayList<>());
+        // text null
+        Proposal prop4 = new Proposal(5L, true, "pic", null, date, new ArrayList<>(), new ArrayList<>());
         // different picture
-        Proposal prop4 = new Proposal(5L, true, "other", "content", date, new ArrayList<>(), new ArrayList<>());
+        Proposal prop5 = new Proposal(4L, true, "other", "content", date, new ArrayList<>(), new ArrayList<>());
+        // picture null
+        Proposal prop6 = new Proposal(5L, true, null, "content", date, new ArrayList<>(), new ArrayList<>());
         // different isActive
-        Proposal prop5 = new Proposal(6L, false, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
+        Proposal prop7 = new Proposal(6L, false, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
 
         assertTrue(proposal.equals(prop));
+        assertTrue(proposal.equals(proposal));
+        assertFalse(proposal.equals(null));
+        assertFalse(proposal.equals(""));
         assertFalse(proposal.equals(prop2));
         assertFalse(proposal.equals(prop3));
         assertFalse(proposal.equals(prop4));
         assertFalse(proposal.equals(prop5));
+        assertFalse(proposal.equals(prop6));
+        assertFalse(proposal.equals(prop7));
     }
 
     @Test

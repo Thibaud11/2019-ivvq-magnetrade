@@ -168,16 +168,25 @@ public class RequestTest {
         Request req2 = new Request(3L, true, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
         // different text
         Request req3 = new Request(4L, true, "pic", "other", date, new ArrayList<>(), new ArrayList<>());
+        // text null
+        Request req4 = new Request(5L, true, "pic", null, date, new ArrayList<>(), new ArrayList<>());
         // different picture
-        Request req4 = new Request(5L, true, "other", "content", date, new ArrayList<>(), new ArrayList<>());
+        Request req5 = new Request(4L, true, "other", "content", date, new ArrayList<>(), new ArrayList<>());
+        // picture null
+        Request req6 = new Request(5L, true, null, "content", date, new ArrayList<>(), new ArrayList<>());
         // different isActive
-        Request req5 = new Request(6L, false, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
+        Request req7 = new Request(6L, false, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
 
         assertTrue(request.equals(req));
+        assertTrue(request.equals(request));
+        assertFalse(request.equals(null));
+        assertFalse(request.equals(""));
         assertFalse(request.equals(req2));
         assertFalse(request.equals(req3));
         assertFalse(request.equals(req4));
         assertFalse(request.equals(req5));
+        assertFalse(request.equals(req6));
+        assertFalse(request.equals(req7));
     }
 
     @Test
