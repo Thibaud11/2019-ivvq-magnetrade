@@ -74,10 +74,11 @@ public class Magnet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Magnet magnet = (Magnet) o;
-        return Objects.equals(id, magnet.id) &&
-                Objects.equals(name, magnet.name) &&
-                Objects.equals(pictureURL, magnet.pictureURL) &&
-                Objects.equals(description, magnet.description);
+        boolean idEquals =  Objects.equals(id, magnet.id);
+        boolean nameEquals = Objects.equals(name, magnet.name);
+        boolean pictureEquals =Objects.equals(pictureURL, magnet.pictureURL);
+        boolean descriptionEquals = Objects.equals(description, magnet.description);
+        return idEquals && nameEquals && pictureEquals && descriptionEquals;
     }
 
     @Override
