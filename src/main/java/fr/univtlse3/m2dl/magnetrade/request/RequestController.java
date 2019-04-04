@@ -14,13 +14,13 @@ public class RequestController {
     private RequestService service;
 
     /**
-     * Method to create a request in the back-end
+     * Method to create or update a request in the back-end
      *
-     * @param request the request to create
+     * @param request the request to create or update
      */
-    @PostMapping("/create")
-    public Request createRequest(@RequestBody Request request) {
-        return service.createRequest(request);
+    @PostMapping({"/create", "/edit"})
+    public Request createOrUpdateRequest(@RequestBody Request request) {
+        return service.createOrUpdateRequest(request);
     }
 
 }

@@ -23,6 +23,12 @@ public class RequestTest {
     }
 
     @Test
+    public void testConstructor() throws Exception {
+        Request request1 = new Request("pic", "content", nowDate, new ArrayList<>());
+        assertThat(request1, IsEqual.equalTo(request));
+    }
+
+    @Test
     public void testGetId() throws Exception {
         assertThat(request.getId(), IsEqual.equalTo(1L));
     }
@@ -156,11 +162,31 @@ public class RequestTest {
     public void testEquals() throws Exception {
         Date date = new Date(155409322);
 
+        // same attributes
         Request req = new Request(2L, true, "pic", "content", nowDate, new ArrayList<>(), new ArrayList<>());
+        // different creationDate
         Request req2 = new Request(3L, true, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
+        // different text
+        Request req3 = new Request(4L, true, "pic", "other", date, new ArrayList<>(), new ArrayList<>());
+        // text null
+        Request req4 = new Request(5L, true, "pic", null, date, new ArrayList<>(), new ArrayList<>());
+        // different picture
+        Request req5 = new Request(4L, true, "other", "content", date, new ArrayList<>(), new ArrayList<>());
+        // picture null
+        Request req6 = new Request(5L, true, null, "content", date, new ArrayList<>(), new ArrayList<>());
+        // different isActive
+        Request req7 = new Request(6L, false, "pic", "content", date, new ArrayList<>(), new ArrayList<>());
 
         assertTrue(request.equals(req));
+        assertTrue(request.equals(request));
+        assertFalse(request.equals(null));
+        assertFalse(request.equals(""));
         assertFalse(request.equals(req2));
+        assertFalse(request.equals(req3));
+        assertFalse(request.equals(req4));
+        assertFalse(request.equals(req5));
+        assertFalse(request.equals(req6));
+        assertFalse(request.equals(req7));
     }
 
     @Test
@@ -173,5 +199,12 @@ public class RequestTest {
                 ", magnets=" + new ArrayList<>() +
                 ", comments=" + new ArrayList<>() +
                 '}'));
+    }
+
+    @Test
+    public void testHashCode() throws Exception {
+        Request req = new Request(2L, true, "pic", "content", nowDate, new ArrayList<>(), new ArrayList<>());
+
+        assertThat(request.hashCode(), IsEqual.equalTo(req.hashCode()));
     }
 }
