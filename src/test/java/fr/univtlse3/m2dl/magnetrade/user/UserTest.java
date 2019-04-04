@@ -9,12 +9,14 @@ public class UserTest {
 
     private User user;
     private User user2;
+    private User user3;
 
 
     @Before
     public void setup() {
         user = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
         user2 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
+        user3 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/s.jpg");
 
     }
 
@@ -110,7 +112,10 @@ public class UserTest {
     public void testEquals() {
         assert (user.equals(user2));
     }
-
+    @Test
+    public void testNotEquals() {
+        assert(!user.equals(user3));
+    }
     @Test
     public void testHashCode() {
         assert (user.hashCode()==user2.hashCode());
