@@ -11,6 +11,13 @@ public class UserTest {
     private User user2;
     private User user3;
     private User user4;
+    private User user5;
+    private User user6;
+    private User user7;
+    private User user8;
+    private User user9;
+    private User user10;
+
 
 
     @Before
@@ -19,6 +26,12 @@ public class UserTest {
         user2 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
         user3 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/s.jpg");
         user4 = new User("a", "a", "la@a.a", new Date(2, 2, 2), "dank 2 veineux", "2", "+2", "/2/s.jpg");
+        user5 = user = new User("Louis", "a", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
+        user6 = new User("Louis", "JACQUES", "a", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
+        user7 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(7, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
+        user8 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou s", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
+        user9 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "s", "+33628813045", "/resources/bigsmile.jpg");
+        user10 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+d", "/resources/bigsmile.jpg");
 
     }
 
@@ -116,8 +129,16 @@ public class UserTest {
     }
     @Test
     public void testNotEquals() {
+        assert(!user.equals(null));
         assert(!user.equals(user3));
         assert(!user.equals(user4));
+        assert(!user.equals(user5));
+        assert(!user.equals(user6));
+        assert(!user.equals(user7));
+        assert(!user.equals(user8));
+        assert(!user.equals(user9));
+        assert(!user.equals(user10));
+
     }
     @Test
     public void testHashCode() {
