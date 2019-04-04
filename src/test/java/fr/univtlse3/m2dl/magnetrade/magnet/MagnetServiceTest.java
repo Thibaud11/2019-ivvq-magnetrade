@@ -2,11 +2,9 @@ package fr.univtlse3.m2dl.magnetrade.magnet;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -16,6 +14,7 @@ import static org.mockito.Mockito.verify;
 
 public class MagnetServiceTest {
 
+//    @Autowired
 //    private static MagnetService magnetService;
 //
 //    @MockBean

@@ -38,6 +38,12 @@ public class MagnetTest {
     }
 
     @Test
+    public void testEqualsWithNullArgIsFalse() {
+        boolean actual = magnet.equals(null);
+        assertThat(actual, is(false));
+    }
+
+    @Test
     public void testGetName() {
         String actual = magnet.getName();
         assertThat(actual, is(MAGNET_NAME));
@@ -76,7 +82,7 @@ public class MagnetTest {
     @Test
     public void testEquals() {
         newMagnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION);
-        assertThat(magnet, is(newMagnet));
+        assertThat(magnet.equals(newMagnet), is(true));
     }
 
     @Test

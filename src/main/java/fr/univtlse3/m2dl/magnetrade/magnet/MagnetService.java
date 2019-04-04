@@ -29,11 +29,11 @@ public class MagnetService {
         return a.orElse(null);
     }
 
-    public void saveMagnet(Magnet magnet) {
+    public Magnet saveMagnet(Magnet magnet) {
         if (magnet == null) {
             throw new IllegalArgumentException("Magnet can not be null");
         } else {
-            magnetRepository.save(magnet);
+            return magnetRepository.save(magnet);
         }
     }
 
