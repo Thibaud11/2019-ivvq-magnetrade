@@ -17,4 +17,4 @@ deploy:
   app: shielded-reaches-59110
   on:
     repo: M2DL/2019-ivvq-magnetrade
-    branch: heroku
+    branch: master
