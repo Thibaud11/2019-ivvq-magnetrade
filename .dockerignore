@@ -2,7 +2,6 @@
 .mvn
 documentation/
 target/
-.git
 .gitignore
 .travis.yml
 HELP.md
