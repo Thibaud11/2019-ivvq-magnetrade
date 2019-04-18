@@ -10,12 +10,19 @@ public class CommentService {
     private CommentRepository commentRepository;
 
     /**
-     * Method to create or update a comment in the back-end.
-     *
+     * Method to create or update a comment.
      * @param comment the comment to create or update
      */
     public Comment createOrUpdateComment(Comment comment) {
         return this.commentRepository.save(comment);
+    }
+
+    /**
+     * Method to delete a comment.
+     * @param id id of the comment to delete
+     */
+    public void deleteComment(Long id) {
+        this.commentRepository.deleteById(id);
     }
 
 }
