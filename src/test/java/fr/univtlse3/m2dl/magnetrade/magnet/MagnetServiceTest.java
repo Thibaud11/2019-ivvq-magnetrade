@@ -68,14 +68,14 @@ public class MagnetServiceTest {
         verify(magnetService.getMagnetRepository()).findById(0L);
     }
 
-    /*@Test
-    public void FindAllFromCrudRepositoryIsInvokedWhenFindAllMagnetTest() {
+    @Test
+    public void findAllFromCrudRepositoryIsInvokedWhenFindAllMagnetTest() {
         //given: un magnetService
         //when: la méthode findAllmagnet est invoquée
         magnetService.findAllMagnets();
         //then: la méthode findAll du Repository associé est invoquée
         verify(magnetService.getMagnetRepository()).findAll();
-    }*/
+    }
 
     @Test
     public void setMagnetRepositoryTest() {

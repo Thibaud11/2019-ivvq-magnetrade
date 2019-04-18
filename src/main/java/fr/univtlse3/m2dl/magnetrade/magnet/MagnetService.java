@@ -41,16 +41,16 @@ public class MagnetService {
         return magnetRepository;
     }
 
-    /*public List<Magnet> findAllMagnets() {
+    public List<Magnet> findAllMagnets() {
         Iterable<Magnet> temp = this.magnetRepository.findAll();
         List<Magnet> res = new ArrayList<>();
         temp.forEach(res::add);
 
-        /* Voir si on a besoin de classer les magnet, peut-être par nom
+        /* Voir si on a besoin de classer les magnet, peut-être par nom */
         // Collections.sort(res, Comparator.comparing(Magnet::getTitre));
 
         return res;
-    }*/
+    }
 
     public void deleteMagnet(Long id) {
         this.magnetRepository.deleteById(id);
