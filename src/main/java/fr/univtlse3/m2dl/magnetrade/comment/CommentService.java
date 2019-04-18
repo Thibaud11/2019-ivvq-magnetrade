@@ -9,8 +9,13 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    public void createComment(Comment comment) {
-        this.commentRepository.save(comment);
+    /**
+     * Method to create or update a comment in the back-end.
+     *
+     * @param comment the comment to create or update
+     */
+    public Comment createOrUpdateComment(Comment comment) {
+        return this.commentRepository.save(comment);
     }
 
 }
