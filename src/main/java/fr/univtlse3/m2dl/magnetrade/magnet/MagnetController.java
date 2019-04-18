@@ -35,7 +35,7 @@ public class MagnetController {
     }
 
     @GetMapping("/all")
-    public List<Magnet> findAllMagnet({
+    public List<Magnet> findAllMagnet(){
         return magnetService.findAllMagnets();
     }
 
