@@ -35,6 +35,7 @@ public class MagnetTest {
     @Before
     public void resetUp() {
         magnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION);
+        newMagnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION);
     }
 
     @Test
@@ -81,7 +82,6 @@ public class MagnetTest {
 
     @Test
     public void testEquals() {
-        newMagnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION);
         assertThat(magnet.equals(newMagnet), is(true));
     }
 

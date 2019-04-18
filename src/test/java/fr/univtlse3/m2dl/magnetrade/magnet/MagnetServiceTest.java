@@ -32,21 +32,35 @@ public class MagnetServiceTest {
     }
 
     @Test
-    public void TypeRepositoryTest() {
+    public void typeRepositoryTest() {
          //le Repository associé à un magnetService est de type CrudRepository
         assertThat(magnetService.getMagnetRepository(), instanceOf(CrudRepository.class));
     }
 
     @Test
-    public void SaveFromCrudRepositoryIsInvokedWhenMagnetSavedTest() {
+    public void saveFromCrudRepositoryIsInvokedWhenMagnetSavedTest() {
         //when: la méthode savemagnet est invoquée
         magnetService.saveMagnet(magnet);
         // then: la méthode save du magnetRepository associé est invoquée
         verify(magnetService.getMagnetRepository()).save(magnet);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void exceptionIsThrownWhenNullMagnetSavedTest() {
+        //when: la méthode savemagnet est invoquée avec null en param
+        magnetService.saveMagnet(null);
+    }
+
     @Test
-    public void FindByIdFromCrudRepositoryIsInvokedWhenmagnetIsFoundByIdTest() {
+    public void deleteFromCrudRepositoryIsInvokedWhenMagnetSavedTest() {
+        //when: la méthode savemagnet est invoquée
+        magnetService.deleteMagnet(0L);
+        // then: la méthode save du magnetRepository associé est invoquée
+        verify(magnetService.getMagnetRepository()).deleteById(0L);
+    }
+
+    @Test
+    public void findByIdFromCrudRepositoryIsInvokedWhenmagnetIsFoundByIdTest() {
         //given: un magnetService
         //when: la méthode findmagnetById est invoquée
         magnetService.findMagnetById(0L);
@@ -54,14 +68,14 @@ public class MagnetServiceTest {
         verify(magnetService.getMagnetRepository()).findById(0L);
     }
 
-    @Test
+    /*@Test
     public void FindAllFromCrudRepositoryIsInvokedWhenFindAllMagnetTest() {
         //given: un magnetService
         //when: la méthode findAllmagnet est invoquée
         magnetService.findAllMagnets();
         //then: la méthode findAll du Repository associé est invoquée
         verify(magnetService.getMagnetRepository()).findAll();
-    }
+    }*/
 
     @Test
     public void setMagnetRepositoryTest() {
