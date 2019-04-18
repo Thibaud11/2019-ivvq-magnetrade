@@ -37,10 +37,6 @@ public class MagnetService {
         }
     }
 
-    public long countMagnet() {
-        return magnetRepository.count();
-    }
-
     public MagnetRepository getMagnetRepository() {
         return magnetRepository;
     }
@@ -54,6 +50,10 @@ public class MagnetService {
         // Collections.sort(res, Comparator.comparing(Magnet::getTitre));
 
         return res;
+    }
+
+    public void deleteMagnet(Long id) {
+        this.magnetRepository.deleteById(id);
     }
 
 }
