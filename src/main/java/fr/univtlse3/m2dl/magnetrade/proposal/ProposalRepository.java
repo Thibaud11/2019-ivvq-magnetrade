@@ -10,6 +10,6 @@ public interface ProposalRepository extends CrudRepository<Proposal, Long> {
 
     List<Proposal> findAll();
 
-    List<Proposal> findAllByActiveTrue();
+    List<Proposal> findAllByIsActiveTrue();
 
 }

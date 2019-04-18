@@ -70,8 +70,8 @@ public class ProposalServiceTest {
         // given: un proposalService
         // when: la méthode findAllActive est invoquée
         proposalService.findAllActive();
-        // then: la méthode findAllByActiveTrue du Repository associé est invoquée
-        verify(proposalService.getRepository()).findAllByActiveTrue();
+        // then: la méthode findAllByIsActiveTrue du Repository associé est invoquée
+        verify(proposalService.getRepository()).findAllByIsActiveTrue();
     }
 
     @Test

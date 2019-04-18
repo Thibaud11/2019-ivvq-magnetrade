@@ -45,7 +45,7 @@ public class RequestService {
      * @return all active requests
      */
     public List<Request> findAllActive() {
-        return repository.findAllByActiveTrue();
+        return repository.findAllByIsActiveTrue();
     }
 
     /**

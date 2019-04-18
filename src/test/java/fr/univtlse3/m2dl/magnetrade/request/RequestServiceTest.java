@@ -70,8 +70,8 @@ public class RequestServiceTest {
         // given: un requestService
         // when: la méthode findAllActive est invoquée
         requestService.findAllActive();
-        // then: la méthode findAllByActiveTrue du Repository associé est invoquée
-        verify(requestService.getRepository()).findAllByActiveTrue();
+        // then: la méthode findAllByIsActiveTrue du Repository associé est invoquée
+        verify(requestService.getRepository()).findAllByIsActiveTrue();
     }
 
     @Test

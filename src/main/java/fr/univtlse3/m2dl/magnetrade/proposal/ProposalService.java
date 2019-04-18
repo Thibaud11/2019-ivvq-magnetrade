@@ -45,7 +45,7 @@ public class ProposalService {
      * @return all active proposals
      */
     public List<Proposal> findAllActive() {
-        return repository.findAllByActiveTrue();
+        return repository.findAllByIsActiveTrue();
     }
 
     /**
