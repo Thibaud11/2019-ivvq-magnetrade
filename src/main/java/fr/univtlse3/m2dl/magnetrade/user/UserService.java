@@ -27,4 +27,15 @@ public class UserService {
         }
     }
 
+    public void deleteUser(long idUser){
+        userRepository.deleteById(idUser);
+    }
+
+    public User findUserById(long idUser){
+        if(userRepository.findById(idUser).isPresent()){
+            return userRepository.findById(idUser).get();
+        }else{
+            return null;
+        }
+    }
 }

@@ -17,4 +17,19 @@ public class UserController {
         return userService.saveUser(user);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(@PathVariable long id){
+        userService.deleteUser(id);
+
+    }
+
+    @GetMapping("/find/{id}")
+    public User findUserById(@PathVariable("id") Long id) throws Exception{
+        if(userService.findUserById(id) != null){
+            return userService.findUserById(id);
+        }else {
+            throw new Exception();
+        }
+
+    }
 }
