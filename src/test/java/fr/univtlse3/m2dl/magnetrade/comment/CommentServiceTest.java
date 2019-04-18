@@ -45,4 +45,9 @@ public class CommentServiceTest {
         verify(commentRepository).save(any(Comment.class));
     }
 
+    public void testDeleteComment() {
+        commentRepository.deleteById(123L);
+        verify(commentRepository).deleteById(123L);
+    }
+
 }
