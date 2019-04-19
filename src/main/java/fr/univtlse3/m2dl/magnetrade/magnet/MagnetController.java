@@ -11,8 +11,23 @@ import java.util.List;
 @RequestMapping("/api/magnet")
 public class MagnetController {
 
-    @Autowired
     private MagnetService magnetService;
+
+    @Autowired
+    public MagnetController(MagnetService magnetService) {
+        this.magnetService = magnetService;
+    }
+
+    public MagnetController() {
+    }
+
+    public void setMagnetService(MagnetService magnetService) {
+        this.magnetService = magnetService;
+    }
+
+    public MagnetService getMagnetService() {
+        return magnetService;
+    }
 
     /**
      * Method to create a magnet in the back-end
@@ -25,7 +40,7 @@ public class MagnetController {
     }
 
     @GetMapping("read/{magnetId}")
-    public ResponseEntity<Magnet> getMagnet(@PathVariable("magnetId") long magnetId){
+    public ResponseEntity<Magnet> findMagnetById(@PathVariable("magnetId") long magnetId){
         Magnet m = magnetService.findMagnetById(magnetId);
         if(m == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
