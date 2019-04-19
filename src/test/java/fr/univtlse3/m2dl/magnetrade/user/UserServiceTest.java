@@ -31,14 +31,14 @@ public class UserServiceTest {
     }
 
     @Test
-    public void saveFromCrudRepositoryIsInvokedWhenuUserSavedTest() {
+    public void testSaveFromCrudRepositoryIsInvokedWhenuUserSaved() {
         //when: la méthode savemagnet est invoquée
         userService.saveUser(user);
         // then: la méthode save du magnetRepository associé est invoquée
         verify(userService.getUserRepository()).save(user);
     }
     @Test
-    public void findByIdFromCrudRepositoryIsInvokedWhenUserIsFoundByIdTest() {
+    public void testFindByIdFromCrudRepositoryIsInvokedWhenUserIsFoundById() {
         //given: un userService
         //when: la méthode findUserById est invoquée
         userService.findUserById(0L);
@@ -51,13 +51,13 @@ public class UserServiceTest {
         assert(userRepository.equals(userService.getUserRepository()));
     }
     @Test
-    public void setUserRepositoryTest() {
+    public void testSetUserRepository() {
         userService.setUserRepository(null);
         assertThat(userService.getUserRepository(), nullValue());
     }
 
     @Test
-    public void deleteFromCrudRepositoryWhenDeletingUserTest(){
+    public void testDeleteFromCrudRepositoryWhenDeletingUser(){
         //given: un userService
         //when: la méthode findUserById est invoquée
         userService.deleteUser(0L);

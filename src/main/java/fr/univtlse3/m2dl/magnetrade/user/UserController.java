@@ -28,8 +28,16 @@ public class UserController {
         if(userService.findUserById(id) != null){
             return userService.findUserById(id);
         }else {
-            throw new Exception();
+           return null;
         }
 
+    }
+
+    public UserService getUserService(){
+        return userService;
+    }
+
+    public void setUserService(UserService userService){
+        this.userService = userService;
     }
 }
