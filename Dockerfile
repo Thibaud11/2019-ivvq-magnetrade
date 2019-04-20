@@ -2,7 +2,7 @@
 FROM node:10.15.3-alpine as nodejs
 WORKDIR /app
 COPY ./src/main/front ./front
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli && npm install
 RUN cd front \
     && npm run build \
     && mv dist /app/public
