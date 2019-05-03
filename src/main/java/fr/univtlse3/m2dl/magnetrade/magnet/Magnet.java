@@ -1,5 +1,7 @@
 package fr.univtlse3.m2dl.magnetrade.magnet;
 
+import fr.univtlse3.m2dl.magnetrade.family.Family;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +33,8 @@ public class Magnet {
     @NotNull
     private String pictureURL;
 
+    private Family family;
+
     /**
      * A little description of the magnet
      */
@@ -39,10 +43,19 @@ public class Magnet {
     public Magnet() {
     }
 
-    public Magnet(String name, String pictureURL, String description) {
+    public Magnet(String name, String pictureURL, String description, Family family) {
         this.name = name;
         this.pictureURL = pictureURL;
         this.description = description;
+        this.family = family;
+    }
+
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family) {
+        this.family = family;
     }
 
     public String getName() {
@@ -74,15 +87,15 @@ public class Magnet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Magnet magnet = (Magnet) o;
-        boolean idEquals =  Objects.equals(id, magnet.id);
-        boolean nameEquals = Objects.equals(name, magnet.name);
-        boolean pictureEquals =Objects.equals(pictureURL, magnet.pictureURL);
-        boolean descriptionEquals = Objects.equals(description, magnet.description);
-        return idEquals && nameEquals && pictureEquals && descriptionEquals;
+        return Objects.equals(id, magnet.id) &&
+                name.equals(magnet.name) &&
+                pictureURL.equals(magnet.pictureURL) &&
+                Objects.equals(family, magnet.family) &&
+                Objects.equals(description, magnet.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, pictureURL, description);
+        return Objects.hash(id, name, pictureURL, family, description);
     }
 }

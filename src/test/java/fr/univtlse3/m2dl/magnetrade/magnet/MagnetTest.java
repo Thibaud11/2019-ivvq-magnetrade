@@ -1,5 +1,6 @@
 package fr.univtlse3.m2dl.magnetrade.magnet;
 
+import fr.univtlse3.m2dl.magnetrade.family.Family;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,6 +19,9 @@ public class MagnetTest {
     private static Magnet magnet;
     private static Magnet newMagnet;
 
+    final public static Family MAGNET_FAMILY = new Family("USA");
+    final public static Family NEW_MAGNET_FAMILY = new Family("AFRICA");
+
     final public static String MAGNET_NAME = "MADAGASCAR";
     final public static String MAGNET_PICTURE_URL = "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwigpcHz55XhAhUEJBoKHbeqAnIQjRx6BAgBEAU&url=https%3A%2F%2Fwww.world-wide-gifts.com%2Fsouvenirs%2F00008084-metal-fridge-magnet-madagascar-map-and-flag-of-madagascar-map-shaped%2F&psig=AOvVaw35ZArOyUpht-Jc41asckXs&ust=1553346261528026";
     final public static String MAGNET_DESCRIPTION = "Un magnet pour madagscar";
@@ -34,8 +38,8 @@ public class MagnetTest {
 
     @Before
     public void resetUp() {
-        magnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION);
-        newMagnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION);
+        magnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION, MAGNET_FAMILY);
+        newMagnet = new Magnet(MAGNET_NAME, MAGNET_PICTURE_URL, MAGNET_DESCRIPTION, MAGNET_FAMILY);
     }
 
     @Test
@@ -54,6 +58,18 @@ public class MagnetTest {
     public void testSetName() {
         magnet.setName(NEW_MAGNET_NAME);
         assertThat(NEW_MAGNET_NAME, is(magnet.getName()));
+    }
+
+    @Test
+    public void testGetFamily() {
+        Family actual = magnet.getFamily();
+        assertThat(actual, is(MAGNET_FAMILY));
+    }
+
+    @Test
+    public void testSetFamily() {
+        magnet.setFamily(NEW_MAGNET_FAMILY);
+        assertThat(NEW_MAGNET_FAMILY, is(magnet.getFamily()));
     }
 
     @Test
