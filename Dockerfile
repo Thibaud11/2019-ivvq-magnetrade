@@ -6,7 +6,7 @@ RUN cd front \
     && npm install -g @angular/cli \
     && npm update \
     && npm run build \
-    && mv dist /app/public
+    && mv dist /app/angular
 
 # Build Back
 FROM maven:3.6-jdk-8 as maven
@@ -15,7 +15,7 @@ ENV CODECOV_TOKEN "04330578-d6b9-41d0-8b94-ef3664319218"
 COPY ./pom.xml ./pom.xml
 COPY ./src ./src
 COPY ./.git ./.git
-COPY --from=nodejs /app/public ./src/main/resources/public
+COPY --from=nodejs /app/angular ./src/main/resources/static
 RUN mvn dependency:go-offline -B
 RUN curl -s https://codecov.io/bash > test.sh \
     && mvn test -B -V \
