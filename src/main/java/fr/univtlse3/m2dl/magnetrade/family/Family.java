@@ -1,10 +1,14 @@
 package fr.univtlse3.m2dl.magnetrade.family;
 
+import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,10 +21,21 @@ public class Family {
     @NotNull
     private String name;
 
+    private List<Magnet> magnets;
+
     public Family(){};
 
     public Family(String name) {
         this.name = name;
+        this.magnets = new ArrayList<>();
+    }
+
+    public List<Magnet> getMagnets() {
+        return magnets;
+    }
+
+    public void setMagnets(List<Magnet> magnets) {
+        this.magnets = magnets;
     }
 
     public String getName() {
@@ -36,11 +51,13 @@ public class Family {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Family family = (Family) o;
-        return name.equals(family.name);
+        return Objects.equals(id, family.id) &&
+                name.equals(family.name) &&
+                Objects.equals(magnets, family.magnets);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id, name, magnets);
     }
 }
