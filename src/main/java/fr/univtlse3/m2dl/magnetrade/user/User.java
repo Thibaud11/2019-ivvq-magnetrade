@@ -37,6 +37,7 @@ public class User {
         return Objects.hash(id, firstName, lastName, emailName, birthDate, nickName, password, phoneNumber, picture);
     }
 
+
     private String emailName;
     private Date birthDate;
     private String nickName;
@@ -121,5 +122,13 @@ public class User {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
