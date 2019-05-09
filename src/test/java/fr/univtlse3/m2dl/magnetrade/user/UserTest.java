@@ -76,6 +76,16 @@ public class UserTest {
     }
 
     @Test
+    public void testSetId() {
+        user.setId(987L);
+        assert (user.getId() == 987L);
+    }
+    @Test
+    public void testGetId() {
+        Long id = user2.id;
+        assert (user2.getId() == id);
+    }
+    @Test
     public void testSetFirstName() {
         user.setFirstName("oh");
         assert (user.getFirstName().equals("oh"));
