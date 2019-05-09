@@ -2,10 +2,7 @@ package fr.univtlse3.m2dl.magnetrade.family;
 
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +18,7 @@ public class Family {
     @NotNull
     private String name;
 
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Magnet> magnets;
 
     public Family(){};
