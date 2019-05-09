@@ -24,7 +24,7 @@ public class MagnetControllerTest {
     @Before
     public void setUp(){
         magnetController = new MagnetController();
-        magnet = new Magnet(MagnetTest.MAGNET_NAME, MagnetTest.MAGNET_PICTURE_URL, MagnetTest.MAGNET_DESCRIPTION);
+        magnet = new Magnet(MagnetTest.MAGNET_NAME, MagnetTest.MAGNET_PICTURE_URL, MagnetTest.MAGNET_DESCRIPTION, MagnetTest.MAGNET_FAMILY);
         magnetController.setMagnetService(magnetService);
     }
 
