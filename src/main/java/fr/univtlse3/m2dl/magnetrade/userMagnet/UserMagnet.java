@@ -17,11 +17,11 @@ public class UserMagnet {
     private int number;
 
     @NotNull
-    @JoinColumn(name="magnet_id")
+    @ManyToOne
     private Magnet magnet;
 
     @NotNull
-    @JoinColumn(name="user_id")
+    @ManyToOne
     private User user;
 
     public UserMagnet() { }
