@@ -8,9 +8,8 @@ addons:
     organization: m2dl
     token:
       secure: HxbCY76VIWZC5gM+TXJj2fjLuOYz7ngugYinRFzpzw9LDsYHIV8VsS54dwacAuPej6hm/aBKDRfJBzu2kwdAEKSTqA4+j6FyfNbBtnAifAlcpHg+lXWJN6L33W+Xk6V+lyOekRBKtqzj+KyczAos2NvJxVbiI0uIkyl2xP/NwquX0yBJzgv8P0zyeUXXkjTpes849P71kxVTiWkAZ28RT4ZXp2LaSVgYjDtMn6BI2uDxSXi5xEVQAR8I6lykDksdkvkjiit6ZFFR7IMQQhPzWoSqiodbwvFXvBY2SMhWx82fVfpJJj1UXtlhDvCJoY6p/7TkCLtttyKLCpFb/P+TrS1YbxljvRwuWR5CaHRPCCavYHyM4JHEOMYUvMnaLPCcEdTmsA5eljuDkq7QFB86M6Lr55KwEb7WtXQjIsaagx36WI0HS/l9a42RPSrlqZHkQ0U52g7cfAyaCaKosGi7vAA/s97+g9HqVW81QqstiShFkRHGCgbfjTDFGUZTp07m4bLRgpAV1PIG33tL7+wxk73oAV7MrQsnB8hHon5yw4GOgl0/3FCj7j61m1vwANLklVvUyPBfp3dTJ+Imia/qoIyw4iYJhKY+qYbeNhfYKdl7jtRavUty2rzuxp8o40jp38wYlbqFt+RMiVM+KdvThYaTamtY4WWIjBVBg8vc9sw=
-before_install:
-  - docker build -t magnetrade .
 script:
+  - docker build -t magnetrade .
   - sonar-scanner
 deploy:
   provider: heroku
