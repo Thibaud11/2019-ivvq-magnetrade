@@ -3,10 +3,7 @@ package fr.univtlse3.m2dl.magnetrade.userMagnet;
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 import fr.univtlse3.m2dl.magnetrade.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -20,9 +17,11 @@ public class UserMagnet {
     private int number;
 
     @NotNull
+    @JoinColumn(name="magnet_id")
     private Magnet magnet;
 
     @NotNull
+    @JoinColumn(name="user_id")
     private User user;
 
     public UserMagnet() { }
