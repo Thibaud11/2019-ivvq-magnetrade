@@ -1,13 +1,9 @@
-package fr.univtlse3.m2dl.magnetrade.userMagnet;
+package fr.univtlse3.m2dl.magnetrade.usermagnet;
 
-import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
-import fr.univtlse3.m2dl.magnetrade.magnet.MagnetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/userMagnet")
@@ -32,9 +28,9 @@ public class UserMagnetController {
     }
 
     /**
-     * Method to create a userMagnet in the back-end
+     * Method to create a usermagnet in the back-end
      *
-     * @param userMagnet the userMagnet to create
+     * @param userMagnet the usermagnet to create
      */
     @PostMapping({"/save","/edit"})
     public UserMagnet createUserMagnet(@RequestBody UserMagnet userMagnet) {

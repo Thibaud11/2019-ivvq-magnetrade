@@ -1,8 +1,5 @@
-package fr.univtlse3.m2dl.magnetrade.userMagnet;
+package fr.univtlse3.m2dl.magnetrade.usermagnet;
 
-import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
-import fr.univtlse3.m2dl.magnetrade.magnet.MagnetController;
-import fr.univtlse3.m2dl.magnetrade.magnet.MagnetService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

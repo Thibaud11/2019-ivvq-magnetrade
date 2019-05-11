@@ -1,8 +1,5 @@
-package fr.univtlse3.m2dl.magnetrade.userMagnet;
+package fr.univtlse3.m2dl.magnetrade.usermagnet;
 
-
-import fr.univtlse3.m2dl.magnetrade.user.User;
-import fr.univtlse3.m2dl.magnetrade.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +37,5 @@ public class UserMagnetService {
             return null;
         }
     }
+
 }

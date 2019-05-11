@@ -1,4 +1,4 @@
-package fr.univtlse3.m2dl.magnetrade.userMagnet;
+package fr.univtlse3.m2dl.magnetrade.usermagnet;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
