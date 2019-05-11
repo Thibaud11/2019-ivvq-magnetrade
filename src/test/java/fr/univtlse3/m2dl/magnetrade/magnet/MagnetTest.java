@@ -5,6 +5,9 @@ import fr.univtlse3.m2dl.magnetrade.family.Family;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -13,6 +16,8 @@ import javax.validation.ValidatorFactory;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class MagnetTest {
 
     private static Validator validator;

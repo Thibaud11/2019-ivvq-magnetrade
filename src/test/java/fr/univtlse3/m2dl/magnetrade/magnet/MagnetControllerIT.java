@@ -48,7 +48,7 @@ public class MagnetControllerIT {
         String magnetJson = objectMapper.writeValueAsString(magnet);
 
         this.mockMvc
-                .perform(get("/api/magnet/read/{id}", id))
+                .perform(get("/api/magnet/{id}", id))
                 .andExpect(status().isOk())
                 //.andExpect(content().contentType(CONTENT_TYPE))
                 .andExpect(content().json(magnetJson));
@@ -59,7 +59,7 @@ public class MagnetControllerIT {
     public void testFindById_WrongId() throws Exception {
         Long id = -1L;
 
-        mockMvc.perform(get("/api/magnet/read/{id}", id))
+        mockMvc.perform(get("/api/magnet/{id}", id))
                 .andExpect(status().isNotFound());
     }
 
@@ -69,7 +69,7 @@ public class MagnetControllerIT {
         Magnet magnet2 =  new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, null);
         String propJson = objectMapper.writeValueAsString(magnet2);
 
-        mockMvc.perform(post("/api/magnet/save")
+        mockMvc.perform(post("/api/magnet/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(propJson))
                 .andExpect(status().is2xxSuccessful());
@@ -77,7 +77,7 @@ public class MagnetControllerIT {
 
         mockMvc.perform(get("/api/magnet/delete/{id}", magnet2.getId()));
 
-        mockMvc.perform(post("/api/magnet/read/{id}", magnet2.getId())
+        mockMvc.perform(post("/api/magnet/{id}", magnet2.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(propJson))
                 .andExpect(status().is4xxClientError());
@@ -91,7 +91,7 @@ public class MagnetControllerIT {
         Magnet magnet2 =  new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, null);
         String propJson = objectMapper.writeValueAsString(magnet2);
 
-        mockMvc.perform(post("/api/magnet/save")
+        mockMvc.perform(post("/api/magnet/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(propJson))
                 .andExpect(status().is2xxSuccessful());

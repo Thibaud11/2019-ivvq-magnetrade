@@ -3,6 +3,7 @@ package fr.univtlse3.m2dl.magnetrade.magnet;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,6 +15,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
+@SpringBootTest
 public class MagnetServiceTest {
 
     private MagnetService magnetService;
@@ -43,12 +45,6 @@ public class MagnetServiceTest {
         magnetService.saveMagnet(magnet);
         // then: la méthode save du magnetRepository associé est invoquée
         verify(magnetService.getMagnetRepository()).save(magnet);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void exceptionIsThrownWhenNullMagnetSavedTest() {
-        //when: la méthode savemagnet est invoquée avec null en param
-        magnetService.saveMagnet(null);
     }
 
     @Test

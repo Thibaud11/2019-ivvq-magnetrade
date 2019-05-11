@@ -8,8 +8,6 @@ import java.util.Objects;
 
 /**
  * The Magnet class
- *
- * @author: Rialy
  */
 @Entity
 public class Magnet {
@@ -105,4 +103,16 @@ public class Magnet {
     public int hashCode() {
         return Objects.hash(id, name, pictureURL, family, description);
     }
+
+    @Override
+    public String toString() {
+        return "Magnet{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pictureURL='" + pictureURL + '\'' +
+                ", family=" + family +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
 }
