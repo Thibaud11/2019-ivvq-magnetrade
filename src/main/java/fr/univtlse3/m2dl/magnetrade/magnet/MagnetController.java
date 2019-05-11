@@ -34,7 +34,7 @@ public class MagnetController {
      *
      * @param magnet the magnet to create
      */
-    @PostMapping({"/save","/edit"})
+    @PostMapping({"/save","/update"})
     public Magnet createMagnet(@RequestBody Magnet magnet) {
         return magnetService.saveMagnet(magnet);
     }
