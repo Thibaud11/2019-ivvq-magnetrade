@@ -9,7 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -45,9 +48,35 @@ public class CommentServiceTest {
         verify(commentRepository).save(any(Comment.class));
     }
 
+    @Test
     public void testDeleteComment() {
         commentRepository.deleteById(123L);
         verify(commentRepository).deleteById(123L);
+    }
+
+    @Test
+    public void testFindById() {
+        Comment c = new Comment(false, today, "", obiwan);
+        Optional<Comment> commentToReturn = Optional.of(c);
+
+        when(commentRepository.findById(any(Long.class))).thenReturn(commentToReturn);
+        assertEquals(commentToReturn, commentService.findById(1L));
+        verify(commentRepository).findById(any(Long.class));
+    }
+
+    @Test
+    public void testFindAll() {
+        Comment c1 = new Comment(false, today, "yyy", obiwan);
+        Comment c2 = new Comment(true, today, "xxx", obiwan);
+        Comment c3 = new Comment(false, today, "sdsdsd", obiwan);
+        List<Comment> comments = new ArrayList<>();
+        comments.add(c1);
+        comments.add(c2);
+        comments.add(c3);
+
+        when(commentRepository.findAll()).thenReturn(comments);
+        assertEquals(comments, commentService.findAll());
+        verify(commentRepository).findAll();
     }
 
 }
