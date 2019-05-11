@@ -4,38 +4,63 @@ package fr.univtlse3.m2dl.magnetrade.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
 
+    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
+    /**
+     * Setter for property 'userRepository'.
+     * @param userRepository value for 'userRepository'
+     */
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Getter for property 'userRepository'.
+     * @return value
+     */
     public UserRepository getUserRepository() {
         return userRepository;
     }
 
-    public User saveUser(User user) {
-        if (user == null) {
-            throw new IllegalArgumentException("User can not be null");
-
-        } else {
-            return userRepository.save(user);
-        }
+    /**
+     * Method to create or update a user.
+     * @param user user to create/update
+     * @return the user created/updated
+     */
+    public User createOrUpdateUser(User user) {
+        return userRepository.save(user);
     }
 
-    public void deleteUser(long idUser){
+    /**
+     * Method to delete a user.
+     * @param idUser id of the user to delete
+     */
+    public void deleteUser(long idUser) {
         userRepository.deleteById(idUser);
     }
 
-    public User findUserById(long idUser){
-        if(userRepository.findById(idUser).isPresent()){
-            return userRepository.findById(idUser).get();
-        }else{
-            return null;
-        }
+    /**
+     * Method to find a user.
+     * @param idUser id of the user to find.
+     * @return user find
+     */
+    public Optional<User> findUserById(long idUser) {
+        return userRepository.findById(idUser);
     }
+
+    /**
+     * Method to find all users.
+     * @return all users
+     */
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
 }
