@@ -1,8 +1,8 @@
 package fr.univtlse3.m2dl.magnetrade.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -25,7 +25,8 @@ public class User {
     @NotNull
     private String emailName;
 
-    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     private Date birthDate;
 
     @NotNull
@@ -144,6 +145,21 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, emailName, birthDate, nickName, password, phoneNumber, picture);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", emailName='" + emailName + '\'' +
+                ", birthDate=" + birthDate +
+                ", nickName='" + nickName + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", picture='" + picture + '\'' +
+                '}';
     }
 
 }

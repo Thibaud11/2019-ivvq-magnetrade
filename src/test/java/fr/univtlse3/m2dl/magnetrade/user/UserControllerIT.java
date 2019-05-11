@@ -51,7 +51,7 @@ public class UserControllerIT {
 
     @Before
     public void setUp() {
-        user = new User();
+        user = new User("obiwan", "kenobi", "hello.there@highground.fr", null, "ben", "jedi1234", "0624356189", "t");
         user = userRepository.save(user);
     }
 
@@ -61,7 +61,7 @@ public class UserControllerIT {
         String userJson = objectMapper.writeValueAsString(user);
 
         this.mockMvc
-                .perform(get("/api/user/find/{id}", id))
+                .perform(get("/api/user/{id}", id))
                 .andExpect(status().isOk())
                 .andExpect(content().json(userJson));
     }

@@ -5,6 +5,9 @@ import fr.univtlse3.m2dl.magnetrade.magnet.MagnetTest;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -16,6 +19,8 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class FamilyTest {
 
     private static Validator validator;
@@ -73,4 +78,5 @@ public class FamilyTest {
     public void testEquals() {
         assertThat(family.equals(newFamily), is(true));
     }
+
 }
