@@ -39,6 +39,7 @@ public class Magnet {
     private String description;
 
     public Magnet() {
+        // Empty
     }
 
     public Magnet(String name, String pictureURL, String description, Family family) {

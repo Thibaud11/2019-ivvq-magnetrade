@@ -1,6 +1,5 @@
 package fr.univtlse3.m2dl.magnetrade.magnet;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
@@ -14,8 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Date;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -27,17 +24,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MagnetControllerIT {
 
     private static final String CONTENT_TYPE = "application/json";
+
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private MagnetRepository magnetRepository;
+
     private Magnet magnet;
+
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Before
     public void setUp() {
-        magnet = new Magnet(MagnetTest.MAGNET_NAME, MagnetTest.MAGNET_PICTURE_URL, MagnetTest.MAGNET_DESCRIPTION);
+        magnet = new Magnet(MagnetTest.MAGNET_NAME, MagnetTest.MAGNET_PICTURE_URL, MagnetTest.MAGNET_DESCRIPTION, null);
         magnet = magnetRepository.save(magnet);
     }
 
@@ -66,7 +66,7 @@ public class MagnetControllerIT {
     @Test
     public void testDeleteMagnet() throws Exception {
         long oldCount = magnetRepository.count();
-        Magnet magnet2 =  new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION);
+        Magnet magnet2 =  new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, null);
         String propJson = objectMapper.writeValueAsString(magnet2);
 
         mockMvc.perform(post("/api/magnet/save")
@@ -88,7 +88,7 @@ public class MagnetControllerIT {
         long oldCount = magnetRepository.count();
 
 
-        Magnet magnet2 =  new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION);
+        Magnet magnet2 =  new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, null);
         String propJson = objectMapper.writeValueAsString(magnet2);
 
         mockMvc.perform(post("/api/magnet/save")
@@ -116,4 +116,5 @@ public class MagnetControllerIT {
         Assert.assertThat(magnetRepository.count(), IsEqual.equalTo(oldCount));
         Assert.assertThat(magnetRepository.findById(id).get(), IsEqual.equalTo(magnet));
     }
+
 }
