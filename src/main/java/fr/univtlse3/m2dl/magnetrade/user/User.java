@@ -1,8 +1,10 @@
 package fr.univtlse3.m2dl.magnetrade.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -13,40 +15,32 @@ public class User {
     @GeneratedValue
     Long id;
 
+    @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName) &&
-                Objects.equals(emailName, user.emailName) &&
-                Objects.equals(birthDate, user.birthDate) &&
-                Objects.equals(nickName, user.nickName) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(phoneNumber, user.phoneNumber) &&
-                Objects.equals(picture, user.picture);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, emailName, birthDate, nickName, password, phoneNumber, picture);
-    }
-
-
+    @Email
+    @NotNull
     private String emailName;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     private Date birthDate;
+
+    @NotNull
     private String nickName;
+
+    @NotNull
     private String password;
+
     private String phoneNumber;
+
     private String picture;
 
     public User() {
-
+        // Empty
     }
 
     public User(String firstName, String lastName, String emailName, Date birthDate, String nickName, String password, String phoneNumber, String picture) {
@@ -131,4 +125,41 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(emailName, user.emailName) &&
+                Objects.equals(birthDate, user.birthDate) &&
+                Objects.equals(nickName, user.nickName) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(picture, user.picture);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, emailName, birthDate, nickName, password, phoneNumber, picture);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", emailName='" + emailName + '\'' +
+                ", birthDate=" + birthDate +
+                ", nickName='" + nickName + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", picture='" + picture + '\'' +
+                '}';
+    }
+
 }

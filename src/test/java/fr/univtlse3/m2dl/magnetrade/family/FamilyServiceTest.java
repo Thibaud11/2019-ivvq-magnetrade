@@ -3,6 +3,7 @@ package fr.univtlse3.m2dl.magnetrade.family;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -13,6 +14,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
+@SpringBootTest
 public class FamilyServiceTest {
 
     private FamilyService familyService;
@@ -42,12 +44,6 @@ public class FamilyServiceTest {
         familyService.saveFamily(family);
         // then: la méthode save du familyRepository associé est invoquée
         verify(familyService.getFamilyRepository()).save(family);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void exceptionIsThrownWhenNullFamilySavedTest() {
-        //when: la méthode savefamily est invoquée avec null en param
-        familyService.saveFamily(null);
     }
 
     @Test
@@ -81,4 +77,5 @@ public class FamilyServiceTest {
         familyService.setFamilyRepository(null);
         assertThat(familyService.getFamilyRepository(), nullValue());
     }
+
 }
