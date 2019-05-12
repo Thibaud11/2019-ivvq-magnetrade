@@ -1,4 +1,4 @@
-package fr.univtlse3.m2dl.magnetrade.userMagnet;
+package fr.univtlse3.m2dl.magnetrade.usermagnet;
 
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 import fr.univtlse3.m2dl.magnetrade.user.User;

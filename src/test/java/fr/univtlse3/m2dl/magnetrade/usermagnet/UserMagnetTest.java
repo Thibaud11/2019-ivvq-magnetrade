@@ -1,7 +1,6 @@
-package fr.univtlse3.m2dl.magnetrade.userMagnet;
+package fr.univtlse3.m2dl.magnetrade.usermagnet;
 
 import fr.univtlse3.m2dl.magnetrade.family.Family;
-import fr.univtlse3.m2dl.magnetrade.family.FamilyTest;
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 import fr.univtlse3.m2dl.magnetrade.magnet.MagnetTest;
 import fr.univtlse3.m2dl.magnetrade.user.User;
@@ -15,7 +14,6 @@ import javax.validation.ValidatorFactory;
 
 import java.util.Date;
 
-import static fr.univtlse3.m2dl.magnetrade.magnet.MagnetTest.MAGNET_FAMILY;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
