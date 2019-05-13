@@ -34,7 +34,7 @@ public class FamilyController {
      *
      * @param family the family to create
      */
-    @PostMapping({"/save","/edit"})
+    @PostMapping({"/save","/update"})
     public Family createFamily(@RequestBody Family family) {
         return familyService.saveFamily(family);
     }
