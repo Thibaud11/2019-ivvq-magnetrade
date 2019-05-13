@@ -14,8 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Date;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -26,40 +24,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class FamilyControllerIT {
 
-    private static final String CONTENT_TYPE = "application/json";
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private FamilyRepository userRepository;
+    private FamilyRepository familyRepository;
     private Family family;
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Before
     public void setUp() {
         family = new Family("Canada");
-        family = userRepository.save(family);
-    }
-
-    @Before
-    public void setup () {
-       /* FamilyController uc = new FamilyController();
-        uc.setFamilyService(new FamilyService());
-        this.mockMvc = MockMvcBuilders.standaloneSetup(uc).build(); */
-
+        family = familyRepository.save(family);
     }
 
     @Test
     public void testFindById() throws Exception {
 
         Long id = family.getId();
-        String userJson = objectMapper.writeValueAsString(family);
+        String familyJson = objectMapper.writeValueAsString(family);
 
         this.mockMvc
                 .perform(get("/api/family/read/{id}", id))
                 .andExpect(status().isOk())
                 //.andExpect(content().contentType(CONTENT_TYPE))
-                .andExpect(content().json(userJson));
+                .andExpect(content().json(familyJson));
 
     }
 
@@ -73,54 +62,55 @@ public class FamilyControllerIT {
 
     @Test
     public void testDeleteFamily() throws Exception {
-        long oldCount = userRepository.count();
+        long oldCount = familyRepository.count();
         Family user2 =  new Family("Africa");
-        String propJson = objectMapper.writeValueAsString(user2);
+        String familyJson = objectMapper.writeValueAsString(user2);
 
         mockMvc.perform(post("/api/family/save")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(propJson))
+                .content(familyJson))
                 .andExpect(status().is2xxSuccessful());
-        Assert.assertThat(userRepository.count(), IsEqual.equalTo(oldCount + 1));
+        Assert.assertThat(familyRepository.count(), IsEqual.equalTo(oldCount + 1));
 
         mockMvc.perform(get("/api/family/delete/{id}", user2.getId()));
 
         mockMvc.perform(post("/api/family/read/{id}", user2.getId())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(propJson))
+                .content(familyJson))
                 .andExpect(status().is4xxClientError());
     }
 
     @Test
     public void testCreateFamily() throws Exception {
-        long oldCount = userRepository.count();
+        long oldCount = familyRepository.count();
 
-        Family user2 =  new Family("Africa");
-        String propJson = objectMapper.writeValueAsString(user2);
+        Family family2 =  new Family("Africa");
+        String familyJson = objectMapper.writeValueAsString(family2);
 
         mockMvc.perform(post("/api/family/save")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(propJson))
+                .content(familyJson))
                 .andExpect(status().is2xxSuccessful());
 
-        Assert.assertThat(userRepository.count(), IsEqual.equalTo(oldCount + 1));
+        Assert.assertThat(familyRepository.count(), IsEqual.equalTo(oldCount + 1));
     }
 
     @Test
     public void testUpdateFamily() throws Exception{
-        long oldCount = userRepository.count();
+        long oldCount = familyRepository.count();
         Long id = family.getId();
 
         family.setName("African America");
+        //System.out.println(family.getName());
 
-        String propJson = objectMapper.writeValueAsString(family);
+        String familyJson = objectMapper.writeValueAsString(family);
 
         mockMvc.perform(post("/api/family/update")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(propJson))
+                .content(familyJson))
                 .andExpect(status().is2xxSuccessful());
 
-        Assert.assertThat(userRepository.count(), IsEqual.equalTo(oldCount));
-        Assert.assertThat(userRepository.findById(id).get(), IsEqual.equalTo(family));
+        Assert.assertThat(familyRepository.count(), IsEqual.equalTo(oldCount));
+        Assert.assertThat(familyRepository.findById(id).get().getName(), IsEqual.equalTo(family.getName()));
     }
 }
