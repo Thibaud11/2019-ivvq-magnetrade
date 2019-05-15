@@ -1,7 +1,10 @@
 package fr.univtlse3.m2dl.magnetrade.abstractpost;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import fr.univtlse3.m2dl.magnetrade.comment.Comment;
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,6 +43,8 @@ public abstract class AbstractPost {
      * date of the creation of the post
      */
     @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     protected Date creationDate;
 
     /**
@@ -47,14 +52,16 @@ public abstract class AbstractPost {
      */
     @OneToMany
     @NotNull
-    protected List<Magnet> magnets;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    protected List<Magnet> magnets = new ArrayList<>();
 
     /**
      * comments of the post
      */
     @OneToMany
     @NotNull
-    protected List<Comment> comments;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    protected List<Comment> comments = new ArrayList<>();
 
     /**
      * Empty constructor
