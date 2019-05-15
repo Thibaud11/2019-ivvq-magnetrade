@@ -68,11 +68,11 @@ public class MagnetControllerIT {
     public void testDeleteMagnet() throws Exception {
         long oldCount = magnetRepository.count();
         Magnet magnet2 = new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, MagnetTest.NEW_MAGNET_FAMILY);
-        String magnetJson = objectMapper.writeValueAsString(magnet2);
+        String propJson = objectMapper.writeValueAsString(magnet2);
 
         mockMvc.perform(post("/api/magnet/create")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(magnetJson))
+                .content(propJson))
                 .andExpect(status().is2xxSuccessful());
         Assert.assertThat(magnetRepository.count(), IsEqual.equalTo(oldCount + 1));
 

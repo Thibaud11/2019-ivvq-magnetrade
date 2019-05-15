@@ -45,7 +45,7 @@ public class FamilyControllerIT {
         String familyJson = objectMapper.writeValueAsString(family);
 
         this.mockMvc
-                .perform(get("/api/family/read/{id}", id))
+                .perform(get("/api/family/{id}", id))
                 .andExpect(status().isOk())
                 //.andExpect(content().contentType(CONTENT_TYPE))
                 .andExpect(content().json(familyJson));
@@ -56,7 +56,7 @@ public class FamilyControllerIT {
     public void testFindById_WrongId() throws Exception {
         Long id = -1L;
 
-        mockMvc.perform(get("/api/family/read/{id}", id))
+        mockMvc.perform(get("/api/family/{id}", id))
                 .andExpect(status().isNotFound());
     }
 
@@ -66,7 +66,7 @@ public class FamilyControllerIT {
         Family user2 =  new Family("Africa");
         String familyJson = objectMapper.writeValueAsString(user2);
 
-        mockMvc.perform(post("/api/family/save")
+        mockMvc.perform(post("/api/family/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(familyJson))
                 .andExpect(status().is2xxSuccessful());
@@ -74,7 +74,7 @@ public class FamilyControllerIT {
 
         mockMvc.perform(get("/api/family/delete/{id}", user2.getId()));
 
-        mockMvc.perform(post("/api/family/read/{id}", user2.getId())
+        mockMvc.perform(post("/api/family/{id}", user2.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(familyJson))
                 .andExpect(status().is4xxClientError());
@@ -87,7 +87,7 @@ public class FamilyControllerIT {
         Family family2 =  new Family("Africa");
         String familyJson = objectMapper.writeValueAsString(family2);
 
-        mockMvc.perform(post("/api/family/save")
+        mockMvc.perform(post("/api/family/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(familyJson))
                 .andExpect(status().is2xxSuccessful());
@@ -105,7 +105,7 @@ public class FamilyControllerIT {
 
         String familyJson = objectMapper.writeValueAsString(family);
 
-        mockMvc.perform(post("/api/family/update")
+        mockMvc.perform(post("/api/family/edit")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(familyJson))
                 .andExpect(status().is2xxSuccessful());

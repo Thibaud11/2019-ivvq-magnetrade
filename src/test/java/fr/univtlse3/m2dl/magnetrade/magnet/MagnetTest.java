@@ -67,18 +67,6 @@ public class MagnetTest {
     }
 
     @Test
-    public void testGetId() {
-        Long actual = magnet.getId();
-        assertThat(actual, is(IsNull.nullValue()));
-    }
-
-    @Test
-    public void testSetId() {
-        magnet.setId(10L);
-        assertThat(10L, is(magnet.getId()));
-    }
-
-    @Test
     public void testGetName() {
         String actual = magnet.getName();
         assertThat(actual, is(MAGNET_NAME));
