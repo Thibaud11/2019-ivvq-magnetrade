@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "1b792bcd-f3c8-4a23-833f-b6c1b6c04437",
+		"name": "Magnetrade",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bcde6a66-5ba6-4fde-bd2b-e61787007df5",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Generated ID\", function () {",
+							"    pm.expect(jsonData.id).to.not.eql(0);",
+							"});",
+							"pm.globals.set(\"idResult\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"birthDate\": \"1995-05-15T17:41:33.154Z\",\n  \"emailName\": \"obiwan.kenobi@jedi.fr\",\n  \"firstName\": \"Obiwan\",\n  \"id\": 0,\n  \"lastName\": \"Kenobi\",\n  \"nickName\": \"Ben\",\n  \"password\": \"satineKryze\",\n  \"phoneNumber\": \"0624783900\",\n  \"picture\": \"pp.jpg\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/user/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Find All Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "861ea98a-0b89-4da2-a1c2-08837379e4c8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches 'firstName'\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"firstName\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/user/all",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Find User X",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "861ea98a-0b89-4da2-a1c2-08837379e4c8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"ID is X\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(pm.globals.get(\"idResult\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/user/{{idResult}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"{{idResult}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bcde6a66-5ba6-4fde-bd2b-e61787007df5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Generated ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.password).to.eql(\"superMotDePasse\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"birthDate\": \"1995-05-15T17:41:33.154Z\",\n  \"emailName\": \"obiwan.kenobi@jedi.fr\",\n  \"firstName\": \"Obiwan\",\n  \"id\": 1,\n  \"lastName\": \"Kenobi\",\n  \"nickName\": \"Ben\",\n  \"password\": \"superMotDePasse\",\n  \"phoneNumber\": \"0624783900\",\n  \"picture\": \"pp.jpg\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/user/edit",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Delete User X",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bcde6a66-5ba6-4fde-bd2b-e61787007df5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/user/delete/{{idResult}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"delete",
+						"{{idResult}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Create Family",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bcde6a66-5ba6-4fde-bd2b-e61787007df5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Tarn\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/family/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"family",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
