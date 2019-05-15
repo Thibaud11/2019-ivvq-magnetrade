@@ -81,7 +81,7 @@ public class ProposalControllerTest {
     }
 
     @Test
-    public void setProposalServiceTest() {
+    public void testSetProposalService() {
         proposalController.setService(null);
         assertThat(proposalController.getService(), nullValue());
     }
