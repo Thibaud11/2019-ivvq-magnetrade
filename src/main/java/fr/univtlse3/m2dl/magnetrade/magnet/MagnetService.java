@@ -3,7 +3,6 @@ package fr.univtlse3.m2dl.magnetrade.magnet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,17 +23,12 @@ public class MagnetService {
         this.magnetRepository = magnetRepository;
     }
 
-    public Magnet findMagnetById(long l) {
-        Optional<Magnet> a = magnetRepository.findById(l);
-        return a.orElse(null);
+    public Optional<Magnet> findMagnetById(long l) {
+        return magnetRepository.findById(l);
     }
 
     public Magnet saveMagnet(Magnet magnet) {
-        if (magnet == null) {
-            throw new IllegalArgumentException("Magnet can not be null");
-        } else {
-            return magnetRepository.save(magnet);
-        }
+        return magnetRepository.save(magnet);
     }
 
     public MagnetRepository getMagnetRepository() {
@@ -42,14 +36,7 @@ public class MagnetService {
     }
 
     public List<Magnet> findAllMagnets() {
-        Iterable<Magnet> temp = this.magnetRepository.findAll();
-        List<Magnet> res = new ArrayList<>();
-        temp.forEach(res::add);
-
-        /* Voir si on a besoin de classer les magnet, peut-être par nom */
-        // Collections.sort(res, Comparator.comparing(Magnet::getTitre));
-
-        return res;
+        return this.magnetRepository.findAll();
     }
 
     public void deleteMagnet(Long id) {

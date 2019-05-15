@@ -39,41 +39,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class UserControllerIT {
 
-    private static final String CONTENT_TYPE = "application/json";
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private UserRepository userRepository;
+
     private User user;
+
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Before
     public void setUp() {
-        user = new User();
+        user = new User("obiwan", "kenobi", "hello.there@highground.fr", null, "ben", "jedi1234", "0624356189", "t");
         user = userRepository.save(user);
-    }
-
-    @Before
-    public void setup () {
-       /* UserController uc = new UserController();
-        uc.setUserService(new UserService());
-        this.mockMvc = MockMvcBuilders.standaloneSetup(uc).build(); */
-
     }
 
     @Test
     public void testFindById() throws Exception {
-
         Long id = user.getId();
         String userJson = objectMapper.writeValueAsString(user);
 
         this.mockMvc
-                .perform(get("/api/user/find/{id}", id))
+                .perform(get("/api/user/{id}", id))
                 .andExpect(status().isOk())
-                //.andExpect(content().contentType(CONTENT_TYPE))
                 .andExpect(content().json(userJson));
-
     }
 
     @Test
@@ -136,4 +126,5 @@ public class UserControllerIT {
         Assert.assertThat(userRepository.count(), IsEqual.equalTo(oldCount));
         Assert.assertThat(userRepository.findById(id).get(), IsEqual.equalTo(user));
     }
+
 }

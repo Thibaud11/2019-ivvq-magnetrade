@@ -22,7 +22,9 @@ public class Family {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Magnet> magnets;
 
-    public Family(){};
+    public Family() {
+        // Empty
+    }
 
     public Family(String name) {
         this.name = name;
@@ -67,4 +69,5 @@ public class Family {
     public int hashCode() {
         return Objects.hash(id, name, magnets);
     }
+
 }

@@ -30,7 +30,7 @@ public class ProposalController {
      * @param id id of the proposal to get
      */
     @GetMapping("/{id}")
-    public Proposal findById(Long id) {
+    public Proposal findById(@PathVariable Long id) {
         return service.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 

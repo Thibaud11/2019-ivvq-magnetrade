@@ -2,9 +2,17 @@ package fr.univtlse3.m2dl.magnetrade.user;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class UserTest {
 
     private User user;
@@ -18,8 +26,6 @@ public class UserTest {
     private User user9;
     private User user10;
 
-
-
     @Before
     public void setup() {
         user =  new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
@@ -32,7 +38,6 @@ public class UserTest {
         user8 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou s", "lepetitbonhommenemousse", "+33628813045", "/resources/bigsmile.jpg");
         user9 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "s", "+33628813045", "/resources/bigsmile.jpg");
         user10 = new User("Louis", "JACQUES", "loulou@lou.lou", new Date(1995, 10, 29), "dank zoulou veineux", "lepetitbonhommenemousse", "+d", "/resources/bigsmile.jpg");
-
     }
 
     @Test
@@ -80,11 +85,13 @@ public class UserTest {
         user.setId(987L);
         assert (user.getId() == 987L);
     }
+
     @Test
     public void testGetId() {
         Long id = user2.id;
         assert (user2.getId() == id);
     }
+
     @Test
     public void testSetFirstName() {
         user.setFirstName("oh");
@@ -102,12 +109,6 @@ public class UserTest {
         user.setEmailName("COUCOU@h.com");
         assert (user.getEmailName().equals("COUCOU@h.com"));
     }
-
-    /*@Test
-    public void testSetBirthDate() {
-        user.setBirthDate(new Date());
-        assert (user.getBirthDate().equals(new Date()));
-    }*/
 
     @Test
     public void testSetNickName() {
@@ -137,22 +138,23 @@ public class UserTest {
     public void testEquals() {
         assert (user.equals(user2));
     }
+
     @Test
     public void testNotEquals() {
-        assert(!user.equals(null));
-        assert(!user.equals(user3));
-        assert(!user.equals(user4));
-        assert(!user.equals(user5));
-        assert(!user.equals(user6));
-        assert(!user.equals(user7));
-        assert(!user.equals(user8));
-        assert(!user.equals(user9));
-        assert(!user.equals(user10));
-
+        assertNotEquals(user, null);
+        assertNotEquals(user, user3);
+        assertNotEquals(user, user4);
+        assertNotEquals(user, user5);
+        assertNotEquals(user, user6);
+        assertNotEquals(user, user7);
+        assertNotEquals(user, user8);
+        assertNotEquals(user, user9);
+        assertNotEquals(user, user10);
     }
+
     @Test
     public void testHashCode() {
-        assert (user.hashCode()==user2.hashCode());
+        assertEquals(user.hashCode(), user2.hashCode());
     }
 
 }

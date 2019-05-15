@@ -2,8 +2,8 @@ package fr.univtlse3.m2dl.magnetrade.family;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ public class FamilyController {
     }
 
     public FamilyController() {
+        // Empty
     }
 
     public void setFamilyService(FamilyService familyService) {
@@ -30,23 +31,18 @@ public class FamilyController {
     }
 
     /**
-     * Method to create a family in the back-end
+     * Method to create or update a family in the back-end.
      *
-     * @param family the family to create
+     * @param family the family to create/update
      */
-    @PostMapping({"/save","/update"})
-    public Family createFamily(@RequestBody Family family) {
+    @PostMapping({"/create","/edit"})
+    public Family createOrUpdateFamily(@RequestBody Family family) {
         return familyService.saveFamily(family);
     }
 
-    @GetMapping("read/{familyId}")
-    public ResponseEntity<Family> findFamilyById(@PathVariable("familyId") long familyId){
-        Family m = familyService.findFamilyById(familyId);
-        if(m == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(m, HttpStatus.OK);
-        }
+    @GetMapping("/{id}")
+    public Family findFamilyById(@PathVariable("id") long id){
+        return familyService.findFamilyById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/all")
@@ -54,9 +50,9 @@ public class FamilyController {
         return familyService.findAllFamilys();
     }
 
-    @DeleteMapping("delete/{familyId}")
-    public void deleteFamily(@PathVariable("familyId") long familyId){
-        familyService.deleteFamily(familyId);
+    @DeleteMapping("/delete/{id}")
+    public void deleteFamily(@PathVariable("id") long id){
+        familyService.deleteFamily(id);
     }
 
 }

@@ -1,10 +1,14 @@
 package fr.univtlse3.m2dl.magnetrade.magnet;
 
+import org.hamcrest.core.IsNull;
 import fr.univtlse3.m2dl.magnetrade.family.Family;
 import org.hamcrest.core.IsNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -13,6 +17,8 @@ import javax.validation.ValidatorFactory;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class MagnetTest {
 
     private static Validator validator;
@@ -26,7 +32,6 @@ public class MagnetTest {
     final public static String MAGNET_NAME = "MADAGASCAR";
     final public static String MAGNET_PICTURE_URL = "https://www.mockUrl.com";
     final public static String MAGNET_DESCRIPTION = "Un magnet pour madagscar";
-
     final public static String NEW_MAGNET_NAME = "FRANCE";
     final public static String NEW_MAGNET_PICTURE_URL = "https://www.newMockUrl.com";
     final public static String NEW_MAGNET_DESCRIPTION = "Champion du monde";
@@ -59,6 +64,18 @@ public class MagnetTest {
     public void testEqualsWithNullArgIsFalse() {
         boolean actual = magnet.equals(null);
         assertThat(actual, is(false));
+    }
+
+    @Test
+    public void testGetId() {
+        Long actual = magnet.getId();
+        assertThat(actual, is(IsNull.nullValue()));
+    }
+
+    @Test
+    public void testSetId() {
+        magnet.setId(10L);
+        assertThat(10L, is(magnet.getId()));
     }
 
     @Test

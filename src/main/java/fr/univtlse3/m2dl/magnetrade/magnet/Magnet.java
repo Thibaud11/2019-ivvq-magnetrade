@@ -8,8 +8,6 @@ import java.util.Objects;
 
 /**
  * The Magnet class
- *
- * @author: Rialy
  */
 @Entity
 public class Magnet {
@@ -40,6 +38,7 @@ public class Magnet {
     private String description;
 
     public Magnet() {
+        // Empty
     }
 
     public Magnet(String name, String pictureURL, String description, Family family) {
@@ -64,6 +63,14 @@ public class Magnet {
     public void setFamily(Family family) {
         this.family = family;
         //family.getMagnets().add(this);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -106,4 +113,16 @@ public class Magnet {
     public int hashCode() {
         return Objects.hash(id, name, pictureURL, family, description);
     }
+
+    @Override
+    public String toString() {
+        return "Magnet{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pictureURL='" + pictureURL + '\'' +
+                ", family=" + family +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
 }

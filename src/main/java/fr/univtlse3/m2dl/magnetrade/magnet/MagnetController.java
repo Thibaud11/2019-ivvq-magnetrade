@@ -2,8 +2,8 @@ package fr.univtlse3.m2dl.magnetrade.magnet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -34,19 +34,14 @@ public class MagnetController {
      *
      * @param magnet the magnet to create
      */
-    @PostMapping({"/save","/update"})
-    public Magnet createMagnet(@RequestBody Magnet magnet) {
+    @PostMapping({"/create","/update"})
+    public Magnet createOrUpdateMagnet(@RequestBody Magnet magnet) {
         return magnetService.saveMagnet(magnet);
     }
 
-    @GetMapping("read/{magnetId}")
-    public ResponseEntity<Magnet> findMagnetById(@PathVariable("magnetId") long magnetId){
-        Magnet m = magnetService.findMagnetById(magnetId);
-        if(m == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(m, HttpStatus.OK);
-        }
+    @GetMapping("/{id}")
+    public Magnet findMagnetById(@PathVariable("id") long id){
+        return magnetService.findMagnetById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/all")
@@ -54,7 +49,7 @@ public class MagnetController {
         return magnetService.findAllMagnets();
     }
 
-    @DeleteMapping("delete/{magnetId}")
+    @DeleteMapping("/delete/{magnetId}")
     public void deleteMagnet(@PathVariable("magnetId") long magnetId){
         magnetService.deleteMagnet(magnetId);
     }

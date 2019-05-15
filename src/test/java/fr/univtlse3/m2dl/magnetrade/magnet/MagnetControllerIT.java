@@ -1,6 +1,5 @@
 package fr.univtlse3.m2dl.magnetrade.magnet;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
@@ -26,12 +25,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MagnetControllerIT {
 
     private static final String CONTENT_TYPE = "application/json";
+
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private MagnetRepository magnetRepository;
+
     private Magnet magnet;
+
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Before
@@ -47,7 +49,7 @@ public class MagnetControllerIT {
         String magnetJson = objectMapper.writeValueAsString(magnet);
 
         this.mockMvc
-                .perform(get("/api/magnet/read/{id}", id))
+                .perform(get("/api/magnet/{id}", id))
                 .andExpect(status().isOk())
                 //.andExpect(content().contentType(CONTENT_TYPE))
                 .andExpect(content().json(magnetJson));
@@ -58,7 +60,7 @@ public class MagnetControllerIT {
     public void testFindById_WrongId() throws Exception {
         Long id = -1L;
 
-        mockMvc.perform(get("/api/magnet/read/{id}", id))
+        mockMvc.perform(get("/api/magnet/{id}", id))
                 .andExpect(status().isNotFound());
     }
 
@@ -68,7 +70,7 @@ public class MagnetControllerIT {
         Magnet magnet2 = new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, MagnetTest.NEW_MAGNET_FAMILY);
         String magnetJson = objectMapper.writeValueAsString(magnet2);
 
-        mockMvc.perform(post("/api/magnet/save")
+        mockMvc.perform(post("/api/magnet/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(magnetJson))
                 .andExpect(status().is2xxSuccessful());
@@ -76,20 +78,19 @@ public class MagnetControllerIT {
 
         mockMvc.perform(get("/api/magnet/delete/{id}", magnet2.getId()));
 
-        mockMvc.perform(post("/api/magnet/read/{id}", magnet2.getId())
+        mockMvc.perform(post("/api/magnet/{id}", magnet2.getId())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(magnetJson))
+                .content(propJson))
                 .andExpect(status().is4xxClientError());
     }
 
     @Test
     public void testCreateMagnet() throws Exception {
         long oldCount = magnetRepository.count();
-
         Magnet magnet2 = new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, MagnetTest.NEW_MAGNET_FAMILY);
         String magnetJson = objectMapper.writeValueAsString(magnet2);
 
-        mockMvc.perform(post("/api/magnet/save")
+        mockMvc.perform(post("/api/magnet/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(magnetJson))
                 .andExpect(status().is2xxSuccessful());
@@ -114,4 +115,5 @@ public class MagnetControllerIT {
         Assert.assertThat(magnetRepository.count(), IsEqual.equalTo(oldCount));
         Assert.assertThat(magnetRepository.findById(id).get().getName(), IsEqual.equalTo(magnet.getName()));
     }
+
 }

@@ -3,6 +3,7 @@ package fr.univtlse3.m2dl.magnetrade.user;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -13,6 +14,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
+@SpringBootTest
 public class UserServiceTest {
 
     private UserService userService;
@@ -33,7 +35,7 @@ public class UserServiceTest {
     @Test
     public void testSaveFromCrudRepositoryIsInvokedWhenuUserSaved() {
         //when: la méthode savemagnet est invoquée
-        userService.saveUser(user);
+        userService.createOrUpdateUser(user);
         // then: la méthode save du magnetRepository associé est invoquée
         verify(userService.getUserRepository()).save(user);
     }
@@ -50,6 +52,7 @@ public class UserServiceTest {
     public void testGetUserRepository() {
         assert(userRepository.equals(userService.getUserRepository()));
     }
+
     @Test
     public void testSetUserRepository() {
         userService.setUserRepository(null);
@@ -64,6 +67,5 @@ public class UserServiceTest {
         //then: la méthode findById du Repository associé est invoquée
         verify(userService.getUserRepository()).deleteById(0L);
     }
-
 
 }
