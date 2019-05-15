@@ -1,5 +1,6 @@
 package fr.univtlse3.m2dl.magnetrade.family;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 
 import javax.persistence.*;
@@ -28,6 +29,14 @@ public class Family {
     public Family(String name) {
         this.name = name;
         this.magnets = new ArrayList<>();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Magnet> getMagnets() {

@@ -28,7 +28,8 @@ public class Magnet {
     @NotNull
     private String pictureURL;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+    @JoinColumn(name="family_id")
     private Family family;
 
     /**
@@ -47,20 +48,21 @@ public class Magnet {
         this.family = family;
     }
 
-    public Family getFamily() {
-        return family;
-    }
-
-    public void setFamily(Family family) {
-        this.family = family;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family) {
+        this.family = family;
+        //family.getMagnets().add(this);
     }
 
     public String getName() {

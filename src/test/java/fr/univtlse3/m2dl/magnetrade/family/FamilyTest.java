@@ -2,6 +2,7 @@ package fr.univtlse3.m2dl.magnetrade.family;
 
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 import fr.univtlse3.m2dl.magnetrade.magnet.MagnetTest;
+import org.hamcrest.core.IsNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -40,6 +41,18 @@ public class FamilyTest {
     public void resetUp() {
         family = new Family("USA");
         newFamily = new Family("USA");
+    }
+
+    @Test
+    public void testGetId() {
+        Long actual = family.getId();
+        assertThat(actual, is(IsNull.nullValue()));
+    }
+
+    @Test
+    public void testSetId() {
+        family.setId(10L);
+        assertThat(10L, is(family.getId()));
     }
 
     @Test

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class MagnetControllerIT {
     @Test
     public void testDeleteMagnet() throws Exception {
         long oldCount = magnetRepository.count();
-        Magnet magnet2 =  new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, null);
+        Magnet magnet2 = new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, MagnetTest.NEW_MAGNET_FAMILY);
         String propJson = objectMapper.writeValueAsString(magnet2);
 
         mockMvc.perform(post("/api/magnet/create")
@@ -86,14 +87,12 @@ public class MagnetControllerIT {
     @Test
     public void testCreateMagnet() throws Exception {
         long oldCount = magnetRepository.count();
-
-
-        Magnet magnet2 =  new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, null);
-        String propJson = objectMapper.writeValueAsString(magnet2);
+        Magnet magnet2 = new Magnet(MagnetTest.NEW_MAGNET_NAME, MagnetTest.NEW_MAGNET_PICTURE_URL, MagnetTest.NEW_MAGNET_DESCRIPTION, MagnetTest.NEW_MAGNET_FAMILY);
+        String magnetJson = objectMapper.writeValueAsString(magnet2);
 
         mockMvc.perform(post("/api/magnet/create")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(propJson))
+                .content(magnetJson))
                 .andExpect(status().is2xxSuccessful());
 
         Assert.assertThat(magnetRepository.count(), IsEqual.equalTo(oldCount + 1));
@@ -104,17 +103,17 @@ public class MagnetControllerIT {
         long oldCount = magnetRepository.count();
         Long id = magnet.getId();
 
-        magnet.setName(MagnetTest.NEW_MAGNET_NAME);
+        magnet.setName("African America");
 
-        String propJson = objectMapper.writeValueAsString(magnet);
+        String magnetJson = objectMapper.writeValueAsString(magnet);
 
         mockMvc.perform(post("/api/magnet/update")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(propJson))
+                .content(magnetJson))
                 .andExpect(status().is2xxSuccessful());
 
         Assert.assertThat(magnetRepository.count(), IsEqual.equalTo(oldCount));
-        Assert.assertThat(magnetRepository.findById(id).get(), IsEqual.equalTo(magnet));
+        Assert.assertThat(magnetRepository.findById(id).get().getName(), IsEqual.equalTo(magnet.getName()));
     }
 
 }
