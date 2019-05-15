@@ -1,5 +1,6 @@
 package fr.univtlse3.m2dl.magnetrade.family;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.univtlse3.m2dl.magnetrade.magnet.Magnet;
 
 import javax.persistence.*;

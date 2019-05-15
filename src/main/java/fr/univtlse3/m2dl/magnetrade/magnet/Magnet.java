@@ -30,7 +30,8 @@ public class Magnet {
     @NotNull
     private String pictureURL;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+    @JoinColumn(name="family_id")
     private Family family;
 
     /**
